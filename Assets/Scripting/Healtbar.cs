@@ -25,5 +25,13 @@ public class Healtbar : MonoBehaviour
         {
             easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, health, lerpspeed);
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            takeDamage(10);
+        }
+    }
+    void takeDamage(float damage)
+    {
+        health -= damage;
     }
 }
