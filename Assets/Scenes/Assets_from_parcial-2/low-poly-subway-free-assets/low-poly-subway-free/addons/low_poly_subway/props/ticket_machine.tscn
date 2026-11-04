@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="PackedScene" path="res://addons/low_poly_subway/models/ticket_machine_model.glb" id="1"]
+[ext_resource type="Script" path="res://addons/low_poly_subway/machine.gd" id="2"]
+
+[sub_resource type="BoxShape3D" id="box0"]
+size = Vector3(0.7900, 1.9000, 0.5800)
+
+[sub_resource type="BoxShape3D" id="box1"]
+size = Vector3(0.2600, 0.1800, 0.0050)
+
+[sub_resource type="BoxShape3D" id="box2"]
+size = Vector3(0.2600, 0.1800, 0.0050)
+
+[sub_resource type="BoxShape3D" id="box3"]
+size = Vector3(0.0800, 0.0050, 0.0500)
+
+[node name="ticket_machine" instance=ExtResource("1")]
+script = ExtResource("2")
+kind = "button"
+clip = "issue"
+lit = PackedStringArray("ticket_machine_screen")
+idle = PackedStringArray("ticket_machine_screen_idle")
+
+[node name="Collision" type="StaticBody3D" parent="ticket_machine"]
+
+[node name="Box" type="CollisionShape3D" parent="ticket_machine/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 0.9500, 0.0450)
+shape = SubResource("box0")
+
+[node name="Collision" type="StaticBody3D" parent="ticket_machine/ticket_machine_screen"]
+
+[node name="Box" type="CollisionShape3D" parent="ticket_machine/ticket_machine_screen/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.4200, 0.3290)
+shape = SubResource("box1")
+
+[node name="Collision" type="StaticBody3D" parent="ticket_machine/ticket_machine_screen_idle"]
+
+[node name="Box" type="CollisionShape3D" parent="ticket_machine/ticket_machine_screen_idle/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 1.4200, 0.3280)
+shape = SubResource("box2")
+
+[node name="Collision" type="StaticBody3D" parent="ticket_machine/ticket_machine_ticket"]
+
+[node name="Box" type="CollisionShape3D" parent="ticket_machine/ticket_machine_ticket/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 0.3600, 0.2050)
+shape = SubResource("box3")

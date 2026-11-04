@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://addons/low_poly_subway/models/departure_board_model.glb" id="1"]
+[ext_resource type="Script" path="res://addons/low_poly_subway/machine.gd" id="2"]
+
+[sub_resource type="BoxShape3D" id="box0"]
+size = Vector3(1.6000, 1.4600, 0.1460)
+
+[sub_resource type="BoxShape3D" id="box1"]
+size = Vector3(1.5200, 0.3400, 0.1520)
+
+[node name="departure_board" instance=ExtResource("1")]
+script = ExtResource("2")
+kind = "powered"
+lit = PackedStringArray("departure_board_screen")
+
+[node name="Collision" type="StaticBody3D" parent="departure_board"]
+
+[node name="Box" type="CollisionShape3D" parent="departure_board/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 3.2700, -0.0000)
+shape = SubResource("box0")
+
+[node name="Collision" type="StaticBody3D" parent="departure_board/departure_board_screen"]
+
+[node name="Box" type="CollisionShape3D" parent="departure_board/departure_board_screen/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 2.7500, -0.0000)
+shape = SubResource("box1")

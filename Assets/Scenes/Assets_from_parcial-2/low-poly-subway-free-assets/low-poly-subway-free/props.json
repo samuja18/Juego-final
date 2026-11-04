@@ -1,0 +1,1279 @@
+{
+ "atlas": 2048,
+ "atlas_used": 224,
+ "fps": 30,
+ "props": [
+  {
+   "name": "floor_platform",
+   "title": "Platform Paving",
+   "group": "floors",
+   "place": "floor",
+   "note": "half-metre slabs, gum pressed into them",
+   "tris": 8,
+   "size": [
+    2.0,
+    2.0,
+    0.0
+   ],
+   "min": [
+    -1.0,
+    -1.0,
+    0.0
+   ],
+   "max": [
+    1.0,
+    1.0,
+    0.0
+   ],
+   "parts": [
+    {
+     "name": "floor_platform",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 8,
+     "min": [
+      -1.0,
+      -1.0,
+      0.0
+     ],
+     "max": [
+      1.0,
+      1.0,
+      0.0
+     ]
+    }
+   ],
+   "anims": []
+  },
+  {
+   "name": "ceiling_metro",
+   "title": "Station Ceiling",
+   "group": "ceilings",
+   "place": "floor",
+   "note": "enamelled panels at 4 m",
+   "tris": 8,
+   "size": [
+    2.0,
+    2.0,
+    0.0
+   ],
+   "min": [
+    -1.0,
+    -1.0,
+    4.0
+   ],
+   "max": [
+    1.0,
+    1.0,
+    4.0
+   ],
+   "parts": [
+    {
+     "name": "ceiling_metro",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 8,
+     "min": [
+      -1.0,
+      -1.0,
+      4.0
+     ],
+     "max": [
+      1.0,
+      1.0,
+      4.0
+     ]
+    }
+   ],
+   "anims": []
+  },
+  {
+   "name": "ceiling_track",
+   "title": "Trackway Ceiling",
+   "group": "ceilings",
+   "place": "floor",
+   "note": "sooted concrete over the track",
+   "tris": 8,
+   "size": [
+    2.0,
+    2.0,
+    0.0
+   ],
+   "min": [
+    -1.0,
+    -1.0,
+    4.0
+   ],
+   "max": [
+    1.0,
+    1.0,
+    4.0
+   ],
+   "parts": [
+    {
+     "name": "ceiling_track",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 8,
+     "min": [
+      -1.0,
+      -1.0,
+      4.0
+     ],
+     "max": [
+      1.0,
+      1.0,
+      4.0
+     ]
+    }
+   ],
+   "anims": []
+  },
+  {
+   "name": "wall_metro",
+   "title": "Metro Tile Wall",
+   "group": "walls",
+   "place": "floor",
+   "note": "cream glazed tile over the line's teal dado; 2 x 4 m",
+   "tris": 36,
+   "size": [
+    2.0,
+    0.25,
+    4.0
+   ],
+   "min": [
+    -1.0,
+    -0.125,
+    0.0
+   ],
+   "max": [
+    1.0,
+    0.125,
+    4.0
+   ],
+   "parts": [
+    {
+     "name": "wall_metro",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 36,
+     "min": [
+      -1.0,
+      -0.125,
+      0.0
+     ],
+     "max": [
+      1.0,
+      0.125,
+      4.0
+     ]
+    }
+   ],
+   "anims": []
+  },
+  {
+   "name": "wall_metro_name",
+   "title": "Metro Wall, Station Name",
+   "group": "walls",
+   "place": "floor",
+   "note": "the station's name in a tiled frieze across its second metre",
+   "tris": 36,
+   "size": [
+    2.0,
+    0.25,
+    4.0
+   ],
+   "min": [
+    -1.0,
+    -0.125,
+    0.0
+   ],
+   "max": [
+    1.0,
+    0.125,
+    4.0
+   ],
+   "parts": [
+    {
+     "name": "wall_metro_name",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 36,
+     "min": [
+      -1.0,
+      -0.125,
+      0.0
+     ],
+     "max": [
+      1.0,
+      0.125,
+      4.0
+     ]
+    }
+   ],
+   "anims": []
+  },
+  {
+   "name": "platform_edge",
+   "title": "Platform Edge",
+   "group": "platforms",
+   "place": "floor",
+   "note": "its edge on its -Y side, the nosing 0.4 m over the track",
+   "tris": 18,
+   "size": [
+    2.0,
+    2.4,
+    0.25
+   ],
+   "min": [
+    -1.0,
+    -1.4,
+    -0.25
+   ],
+   "max": [
+    1.0,
+    1.0,
+    0.0
+   ],
+   "parts": [
+    {
+     "name": "platform_edge",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 8,
+     "min": [
+      -1.0,
+      -1.0,
+      0.0
+     ],
+     "max": [
+      1.0,
+      1.0,
+      0.0
+     ]
+    },
+    {
+     "name": "platform_edge_nosing",
+     "parent": "platform_edge",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 10,
+     "min": [
+      -1.0,
+      -1.4,
+      -0.25
+     ],
+     "max": [
+      1.0,
+      -1.0,
+      0.0
+     ]
+    }
+   ],
+   "anims": []
+  },
+  {
+   "name": "track_straight",
+   "title": "Track",
+   "group": "track",
+   "place": "floor",
+   "note": "slab track: sleepers, the running rails, the conductor rail on the +X side; 4 x 2 m, on the line between two cells",
+   "tris": 300,
+   "size": [
+    4.0,
+    2.0,
+    1.1
+   ],
+   "min": [
+    -2.0,
+    -1.0,
+    -1.1
+   ],
+   "max": [
+    2.0,
+    1.0,
+    0.0
+   ],
+   "parts": [
+    {
+     "name": "track_straight",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 268,
+     "min": [
+      -2.0,
+      -1.0,
+      -1.1
+     ],
+     "max": [
+      2.0,
+      1.0,
+      -0.7575
+     ]
+    },
+    {
+     "name": "track_straight_l",
+     "parent": "track_straight",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 16,
+     "min": [
+      -2.0,
+      -1.0,
+      -1.1
+     ],
+     "max": [
+      -1.98,
+      1.0,
+      0.0
+     ]
+    },
+    {
+     "name": "track_straight_r",
+     "parent": "track_straight",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 16,
+     "min": [
+      1.98,
+      -1.0,
+      -1.1
+     ],
+     "max": [
+      2.0,
+      1.0,
+      0.0
+     ]
+    }
+   ],
+   "anims": []
+  },
+  {
+   "name": "fare_gate",
+   "title": "Fare Gate",
+   "group": "fare line",
+   "place": "floor",
+   "note": "an aisle 0.7 m wide along Y, entry at -Y; a ticket opens it a while",
+   "tris": 940,
+   "size": [
+    1.02,
+    1.455,
+    1.18
+   ],
+   "min": [
+    -0.51,
+    -0.745,
+    0.0
+   ],
+   "max": [
+    0.51,
+    0.71,
+    1.18
+   ],
+   "parts": [
+    {
+     "name": "fare_gate",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 312,
+     "min": [
+      -0.51,
+      -0.745,
+      0.0
+     ],
+     "max": [
+      -0.34,
+      0.71,
+      1.012
+     ]
+    },
+    {
+     "name": "fare_gate_cabinet_r",
+     "parent": "fare_gate",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 312,
+     "min": [
+      0.34,
+      -0.745,
+      0.0
+     ],
+     "max": [
+      0.51,
+      0.71,
+      1.012
+     ]
+    },
+    {
+     "name": "fare_gate_paddle_l",
+     "parent": "fare_gate",
+     "pivot": [
+      -0.35,
+      0.0,
+      0.0
+     ],
+     "tris": 36,
+     "min": [
+      -0.35,
+      -0.0125,
+      0.59
+     ],
+     "max": [
+      0.02,
+      0.0125,
+      1.18
+     ]
+    },
+    {
+     "name": "fare_gate_paddle_r",
+     "parent": "fare_gate",
+     "pivot": [
+      0.35,
+      0.0,
+      0.0
+     ],
+     "tris": 36,
+     "min": [
+      -0.02,
+      -0.0125,
+      0.59
+     ],
+     "max": [
+      0.35,
+      0.0125,
+      1.18
+     ]
+    },
+    {
+     "name": "fare_gate_ticket",
+     "parent": "fare_gate",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      -0.452,
+      -0.251,
+      0.99
+     ],
+     "max": [
+      -0.398,
+      -0.249,
+      1.07
+     ]
+    },
+    {
+     "name": "fare_gate_lamp",
+     "parent": "fare_gate",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 58,
+     "min": [
+      -0.413,
+      -0.739,
+      0.8329
+     ],
+     "max": [
+      -0.377,
+      -0.714,
+      0.8671
+     ]
+    },
+    {
+     "name": "fare_gate_lamp_idle",
+     "parent": "fare_gate",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 58,
+     "min": [
+      -0.473,
+      -0.739,
+      0.8329
+     ],
+     "max": [
+      -0.437,
+      -0.714,
+      0.8671
+     ]
+    },
+    {
+     "name": "fare_gate_lamp_r",
+     "parent": "fare_gate",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 58,
+     "min": [
+      0.437,
+      -0.739,
+      0.8329
+     ],
+     "max": [
+      0.473,
+      -0.714,
+      0.8671
+     ]
+    },
+    {
+     "name": "fare_gate_lamp_idle_r",
+     "parent": "fare_gate",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 58,
+     "min": [
+      0.377,
+      -0.739,
+      0.8329
+     ],
+     "max": [
+      0.413,
+      -0.714,
+      0.8671
+     ]
+    }
+   ],
+   "anims": [
+    {
+     "name": "open",
+     "seconds": 4.0,
+     "loop": false
+    }
+   ],
+   "use": {
+    "kind": "slot",
+    "takes": "metro_ticket",
+    "keep": true,
+    "clip": "open",
+    "fitted": [
+     "fare_gate_ticket"
+    ],
+    "lit": [
+     "fare_gate_lamp",
+     "fare_gate_lamp_r"
+    ],
+    "idle": [
+     "fare_gate_lamp_idle",
+     "fare_gate_lamp_idle_r"
+    ]
+   }
+  },
+  {
+   "name": "ticket_machine",
+   "title": "Ticket Machine",
+   "group": "fare line",
+   "place": "floor",
+   "note": "its screen lit with power; a press drops a ticket in its tray",
+   "tris": 190,
+   "size": [
+    0.79,
+    0.58,
+    1.9
+   ],
+   "min": [
+    -0.395,
+    -0.335,
+    0.0
+   ],
+   "max": [
+    0.395,
+    0.245,
+    1.9
+   ],
+   "parts": [
+    {
+     "name": "ticket_machine",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 154,
+     "min": [
+      -0.395,
+      -0.335,
+      0.0
+     ],
+     "max": [
+      0.395,
+      0.245,
+      1.9
+     ]
+    },
+    {
+     "name": "ticket_machine_screen",
+     "parent": "ticket_machine",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      -0.13,
+      -0.331,
+      1.33
+     ],
+     "max": [
+      0.13,
+      -0.327,
+      1.51
+     ]
+    },
+    {
+     "name": "ticket_machine_screen_idle",
+     "parent": "ticket_machine",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      -0.13,
+      -0.33,
+      1.33
+     ],
+     "max": [
+      0.13,
+      -0.326,
+      1.51
+     ]
+    },
+    {
+     "name": "ticket_machine_ticket",
+     "parent": "ticket_machine",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      -0.04,
+      -0.23,
+      0.359
+     ],
+     "max": [
+      0.04,
+      -0.18,
+      0.361
+     ]
+    }
+   ],
+   "anims": [
+    {
+     "name": "issue",
+     "seconds": 1.5,
+     "loop": false
+    }
+   ],
+   "use": {
+    "kind": "button",
+    "clip": "issue",
+    "lit": [
+     "ticket_machine_screen"
+    ],
+    "idle": [
+     "ticket_machine_screen_idle"
+    ]
+   }
+  },
+  {
+   "name": "metro_ticket",
+   "title": "Ticket",
+   "group": "items",
+   "place": "item",
+   "note": "a single; the fare gates take it and give it back",
+   "tris": 12,
+   "size": [
+    0.08,
+    0.04,
+    0.002
+   ],
+   "min": [
+    -0.04,
+    -0.02,
+    0.0
+   ],
+   "max": [
+    0.04,
+    0.02,
+    0.002
+   ],
+   "parts": [
+    {
+     "name": "metro_ticket",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      -0.04,
+      -0.02,
+      0.0
+     ],
+     "max": [
+      0.04,
+      0.02,
+      0.002
+     ]
+    }
+   ],
+   "anims": [],
+   "use": {
+    "kind": "item",
+    "item": "metro_ticket"
+   }
+  },
+  {
+   "name": "departure_board",
+   "title": "Departure Board",
+   "group": "boards",
+   "place": "floor",
+   "note": "hung from a 4 m ceiling on rods; the next trains lit on both faces",
+   "tris": 168,
+   "size": [
+    1.6,
+    0.152,
+    1.46
+   ],
+   "min": [
+    -0.8,
+    -0.076,
+    2.54
+   ],
+   "max": [
+    0.8,
+    0.076,
+    4.0
+   ],
+   "parts": [
+    {
+     "name": "departure_board",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 164,
+     "min": [
+      -0.8,
+      -0.073,
+      2.54
+     ],
+     "max": [
+      0.8,
+      0.073,
+      4.0
+     ]
+    },
+    {
+     "name": "departure_board_screen",
+     "parent": "departure_board",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 4,
+     "min": [
+      -0.76,
+      -0.076,
+      2.58
+     ],
+     "max": [
+      0.76,
+      0.076,
+      2.92
+     ]
+    }
+   ],
+   "anims": [],
+   "use": {
+    "kind": "powered",
+    "lit": [
+     "departure_board_screen"
+    ]
+   }
+  },
+  {
+   "name": "lamp_trough_metro",
+   "title": "Trough Light",
+   "group": "lights",
+   "place": "floor",
+   "note": "a batten 1.6 m along Y, for a ceiling's cable trough; lit",
+   "tris": 36,
+   "size": [
+    0.16,
+    1.6,
+    0.067
+   ],
+   "min": [
+    -0.08,
+    -0.8,
+    3.893
+   ],
+   "max": [
+    0.08,
+    0.8,
+    3.96
+   ],
+   "parts": [
+    {
+     "name": "lamp_trough_metro",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 24,
+     "min": [
+      -0.08,
+      -0.8,
+      3.896
+     ],
+     "max": [
+      0.08,
+      0.8,
+      3.96
+     ]
+    },
+    {
+     "name": "lamp_trough_metro_lens",
+     "parent": "lamp_trough_metro",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      -0.06,
+      -0.78,
+      3.893
+     ],
+     "max": [
+      0.06,
+      0.78,
+      3.897
+     ]
+    }
+   ],
+   "anims": [],
+   "use": {
+    "kind": "powered",
+    "on": true,
+    "lit": [
+     "lamp_trough_metro_lens"
+    ]
+   }
+  },
+  {
+   "name": "sign_way_out",
+   "title": "Way Out Sign",
+   "group": "signs",
+   "place": "floor",
+   "note": "hung from a 4 m ceiling, 1.6 m along X; its arrow towards -X, seen from either side",
+   "tris": 144,
+   "size": [
+    1.64,
+    0.08,
+    1.47
+   ],
+   "min": [
+    -0.82,
+    -0.04,
+    2.53
+   ],
+   "max": [
+    0.82,
+    0.04,
+    4.0
+   ],
+   "parts": [
+    {
+     "name": "sign_way_out",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 144,
+     "min": [
+      -0.82,
+      -0.04,
+      2.53
+     ],
+     "max": [
+      0.82,
+      0.04,
+      4.0
+     ]
+    }
+   ],
+   "anims": []
+  },
+  {
+   "name": "poster_hills",
+   "title": "Poster: Hills",
+   "group": "boards",
+   "place": "wall",
+   "note": "framed, no words and no brand; 1.5 x 1 m at 1.7 m",
+   "tris": 14,
+   "size": [
+    1.56,
+    0.031,
+    1.06
+   ],
+   "min": [
+    -0.78,
+    -0.031,
+    1.17
+   ],
+   "max": [
+    0.78,
+    0.0,
+    2.23
+   ],
+   "parts": [
+    {
+     "name": "poster_hills",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 14,
+     "min": [
+      -0.78,
+      -0.031,
+      1.17
+     ],
+     "max": [
+      0.78,
+      0.0,
+      2.23
+     ]
+    }
+   ],
+   "anims": []
+  },
+  {
+   "name": "bench_metro",
+   "title": "Platform Bench",
+   "group": "seats",
+   "place": "floor",
+   "note": "three perforated steel seats, 1.8 m along X",
+   "tris": 212,
+   "size": [
+    1.76,
+    0.509,
+    0.875
+   ],
+   "min": [
+    -0.88,
+    -0.23,
+    0.0
+   ],
+   "max": [
+    0.88,
+    0.279,
+    0.875
+   ],
+   "parts": [
+    {
+     "name": "bench_metro",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 60,
+     "min": [
+      -0.85,
+      -0.225,
+      0.0
+     ],
+     "max": [
+      0.85,
+      0.225,
+      0.43
+     ]
+    },
+    {
+     "name": "bench_metro_seat0",
+     "parent": "bench_metro",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      -0.88,
+      -0.23,
+      0.444
+     ],
+     "max": [
+      -0.32,
+      0.19,
+      0.456
+     ]
+    },
+    {
+     "name": "bench_metro_back0",
+     "parent": "bench_metro",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      -0.88,
+      0.1976,
+      0.4787
+     ],
+     "max": [
+      -0.32,
+      0.2788,
+      0.8747
+     ]
+    },
+    {
+     "name": "bench_metro_seat1",
+     "parent": "bench_metro",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      -0.28,
+      -0.23,
+      0.444
+     ],
+     "max": [
+      0.28,
+      0.19,
+      0.456
+     ]
+    },
+    {
+     "name": "bench_metro_back1",
+     "parent": "bench_metro",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      -0.28,
+      0.1976,
+      0.4787
+     ],
+     "max": [
+      0.28,
+      0.2788,
+      0.8747
+     ]
+    },
+    {
+     "name": "bench_metro_seat2",
+     "parent": "bench_metro",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      0.32,
+      -0.23,
+      0.444
+     ],
+     "max": [
+      0.88,
+      0.19,
+      0.456
+     ]
+    },
+    {
+     "name": "bench_metro_back2",
+     "parent": "bench_metro",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 12,
+     "min": [
+      0.32,
+      0.1976,
+      0.4787
+     ],
+     "max": [
+      0.88,
+      0.2788,
+      0.8747
+     ]
+    },
+    {
+     "name": "bench_metro_arm0",
+     "parent": "bench_metro",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 40,
+     "min": [
+      -0.315,
+      -0.163,
+      0.4468
+     ],
+     "max": [
+      -0.285,
+      0.1571,
+      0.6332
+     ]
+    },
+    {
+     "name": "bench_metro_arm1",
+     "parent": "bench_metro",
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 40,
+     "min": [
+      0.285,
+      -0.163,
+      0.4468
+     ],
+     "max": [
+      0.315,
+      0.1571,
+      0.6332
+     ]
+    }
+   ],
+   "anims": []
+  },
+  {
+   "name": "bin_metro",
+   "title": "Litter Bin",
+   "group": "bins",
+   "place": "floor",
+   "note": "a clear bag on a hoop on a post",
+   "tris": 358,
+   "size": [
+    0.44,
+    0.574,
+    1.0
+   ],
+   "min": [
+    -0.22,
+    -0.22,
+    0.0
+   ],
+   "max": [
+    0.22,
+    0.354,
+    1.0
+   ],
+   "parts": [
+    {
+     "name": "bin_metro",
+     "parent": null,
+     "pivot": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "tris": 358,
+     "min": [
+      -0.22,
+      -0.22,
+      0.0
+     ],
+     "max": [
+      0.22,
+      0.3541,
+      1.0
+     ]
+    }
+   ],
+   "anims": []
+  }
+ ]
+}
