@@ -1,11 +1,43 @@
+using Unity.VectorGraphics;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class characterSelector : MonoBehaviour
 {
     public Button[] botones;
+    public Button kiroBoton;
+    public Button pointBBoton;
+    public Button kakaretaBoton;
     public int seleccionado = 0;
+
+
+    private void Start()
+    {
+        kiroBoton.onClick.AddListener(kiro);
+        pointBBoton.onClick.AddListener(pointB);
+        kakaretaBoton.onClick.AddListener(kakareta);
+    }
+    private void SavePlayerAs(string character)
+    {
+        PlayerPrefs.SetString("SelectedCharacter", character);
+    }
+    void kiro()
+    {
+        SavePlayerAs(character: "Kiro");
+    }
+
+    void pointB()
+    {
+        SavePlayerAs(character: "PointB");
+    }
+
+    void kakareta()
+    {
+        SavePlayerAs(character: "Kakareta");
+    }
+
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
@@ -38,11 +70,18 @@ public class characterSelector : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
             botones[seleccionado].onClick.Invoke();
+            GetComponent<stageSelector>().LoadScene();
+
         }
 
         void visualActivado()
         {
             botones[seleccionado].Select();
         }
+
     }
+   
+    
+        
+    
 }

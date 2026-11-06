@@ -40,13 +40,13 @@ public class stageSelector : MonoBehaviour
     {
         sceneName = Street;
         Debug.Log("Selected scenario: " + sceneName);
-        SceneManager.LoadScene("characterSelectionCoop");
+        SceneManager.LoadScene("Street");
     }
     public void selectedTrain (string Train)
     {
         sceneName = Train;
         Debug.Log("Selected scenario: " + sceneName);
-        SceneManager.LoadScene("characterSelectionCoop");
+        SceneManager.LoadScene("Train");
     }
     public void LoadScene()
     {
