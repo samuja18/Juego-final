@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,19 +6,21 @@ using UnityEngine.UI;
 
 public class characterSelector : MonoBehaviour
 {
+    //variables
+    
     public Button[] botones;
     public Button kiroBoton;
     public Button pointBBoton;
     public Button kakaretaBoton;
     public int seleccionado = 0;
-
-
     private void Start()
     {
         kiroBoton.onClick.AddListener(kiro);
         pointBBoton.onClick.AddListener(pointB);
         kakaretaBoton.onClick.AddListener(kakareta);
+        
     }
+    //guardar personajes
     private void SavePlayerAs(string character)
     {
         PlayerPrefs.SetString("SelectedCharacter", character);
@@ -36,8 +39,8 @@ public class characterSelector : MonoBehaviour
     {
         SavePlayerAs(character: "Kakareta");
     }
-
-    
+    //seleccionar escenario
+    //movimiento del menú
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
@@ -70,7 +73,6 @@ public class characterSelector : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
             botones[seleccionado].onClick.Invoke();
-            GetComponent<stageSelector>().LoadScene();
 
         }
 
@@ -78,10 +80,6 @@ public class characterSelector : MonoBehaviour
         {
             botones[seleccionado].Select();
         }
-
-    }
-   
-    
-        
+    } 
     
 }

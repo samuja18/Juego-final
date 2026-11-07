@@ -7,7 +7,6 @@ public class gameSelection : MonoBehaviour
     public Button[] botones;
     public int seleccionado = 0;
 
-    // Update is called once per frame
     private void Update()
     {
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))

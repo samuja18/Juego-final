@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class characterInvoque : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class characterInvoque : MonoBehaviour
     public GameObject kakareta;
     void Start()
     {
+        
         string character = PlayerPrefs.GetString(key:"SelectedCharacter");
         SpawnCharacter(character);
     }
@@ -15,6 +17,7 @@ public class characterInvoque : MonoBehaviour
         if (character == "Kiro")
         {
             Instantiate(kiro);
+            Debug.Log("personaje cargado");
         }
         if (character == "PointB")
         {
@@ -25,4 +28,5 @@ public class characterInvoque : MonoBehaviour
             Instantiate(kakareta);
         }
     }
+    
 }
