@@ -3,23 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class stageInvocator : MonoBehaviour
 {
-    
+    private string Selected_Scene;
+
     void Start()
     {
-        string scene = PlayerPrefs.GetString(key: "SelectedScene");
+        Selected_Scene = PlayerPrefs.GetString("SelectedScene","");
     }
 
     // Update is called once per frame
-    public void StageSpawner(string scene)
+    public void StageSpawner()
     {
-        if (scene == "Street")
+        switch (Selected_Scene)
         {
-            SceneManager.LoadScene("Street");
-        }
-        if (scene == "Train")
-        {
-            SceneManager.LoadScene("Train");
-            Debug.Log("escena cargada:");
+            case "Street":
+                SceneManager.LoadScene("Street");
+                break;
+
+            case "Train":
+                SceneManager.LoadScene("Train");
+                break;
         }
     }
 }

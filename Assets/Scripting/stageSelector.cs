@@ -13,6 +13,7 @@ public class stageSelector : MonoBehaviour
     public Button trainButton;
     public int seleccionado = 0;
 
+
     public void Start()
     {
         streetButton.onClick.AddListener(street);
@@ -31,6 +32,7 @@ public class stageSelector : MonoBehaviour
     {
         SaveSceneAs(scene: "Train");
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
