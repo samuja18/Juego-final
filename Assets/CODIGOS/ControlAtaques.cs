@@ -49,7 +49,7 @@ public class ControlAtaques : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(parry))
+        if (Input.GetKeyDown(parry) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false))
         {
             aataquesanim.SetTrigger("parry");
         }

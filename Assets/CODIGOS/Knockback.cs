@@ -7,6 +7,7 @@ public class NEWenemigo : MonoBehaviour
     private float direccionKnockBackVertical = 10f;
     private Rigidbody rb;
     public float DELAYknockback = 2f;
+    public float knockBackPARRY = 6f;
     public float KIROknockBackGolpeLigero = 3f;
     public float KIROknockBackGolpePesado = 5f;
     public float KIROknockBackGolpeDelantePesado = 5f;
@@ -17,6 +18,7 @@ public class NEWenemigo : MonoBehaviour
     public Animator RETROCESO;
      [SerializeField] private UnityEvent DejaDeParry; 
 
+    public float RECUPERACIONPARRY = 0.7f;
     public float RECUPERACIONGolpeLigero = 0.1f;
     public float RECUPERACIONGolpePesado = 0.5f;
     public float RECUPERACIONGolpeDelantePesado = 0.7f;
@@ -42,7 +44,21 @@ public class NEWenemigo : MonoBehaviour
     
     private void OnTriggerEnter(Collider golpeLigero)
     {
-        
+        // parry
+        if((golpeLigero.gameObject.CompareTag("parry")))
+        {
+        if (aturdido) return; 
+        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        if (ControlAtaques != null)
+        {
+            ControlAtaques.AtaqueAturdido();
+            Debug.Log("ya no estas atacando");
+        }
+        aturdido = true;
+        RETROCESO.SetBool("ATURDIDO", true);
+        StartCoroutine(RECUPERACIONKNOCKBACKPARRY(RECUPERACIONPARRY));
+        }
+        // parry
         if((golpeLigero.gameObject.CompareTag("golpe ligero")) && (controlparry == false))
         {
         if (aturdido) return; 
@@ -196,8 +212,14 @@ public class NEWenemigo : MonoBehaviour
         
     }
 
-
-
+    //PARRY
+    private IEnumerator RECUPERACIONKNOCKBACKPARRY(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        aturdido = false;
+        RETROCESO.SetBool("ATURDIDO", false);
+    }
+    //PARRY
     private IEnumerator RECUPERACIONKNOCKBACKGolpeDelantePesado(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -235,5 +257,5 @@ public class NEWenemigo : MonoBehaviour
         RETROCESO.SetBool("ATURDIDO", false);
     }
 
-    
+
 }

@@ -96,8 +96,11 @@ public class controladelanteatras : MonoBehaviour
         rotacionDeseada, 
         velocidadRotacion * Time.deltaTime
     );
+    if(AtaqueaAire == false)
+    {
     agachado = Keyboard.current.numpad5Key.isPressed; 
-    
+    }
+
         if (Input.GetKeyDown(teclaSalto) && puedoSaltar && puedeMoverse && (aturdido.aturdido == false))
         {
             
@@ -157,7 +160,7 @@ public class controladelanteatras : MonoBehaviour
             
 
     
-    if (Input.GetKeyDown(teclaAgacharse) && (controlataque.atacando == false))
+    if (Input.GetKeyDown(teclaAgacharse) && (controlataque.atacando == false) && (AtaqueaAire == false))
     {
         puedeMoverse = false;
         persoanim.SetTrigger("agacharse");
