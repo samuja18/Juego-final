@@ -21,6 +21,7 @@ public class controladelanteatras : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip backgroundMusic;
     public float rotatejugador = 90f;
+    public float velocidadRotacion = 720f;
     public bool puedeMoverse;
     public bool puedoSaltar;
     public bool moviendoseIzquierda;
@@ -31,6 +32,11 @@ public class controladelanteatras : MonoBehaviour
     public ControlAtaques controlataque;
     public personajeatras alrevez;
     public NEWenemigo aturdido;
+    [Header("Controles del Jugador")]
+    public KeyCode teclaDerecha = KeyCode.Keypad6;
+    public KeyCode teclaIzquierda = KeyCode.Keypad4;
+    public KeyCode teclaAgacharse = KeyCode.Keypad5;
+    public KeyCode teclaSalto = KeyCode.Keypad8;
     void Awake()
     { 
         persoanim = GetComponent<Animator>();
@@ -50,10 +56,49 @@ public class controladelanteatras : MonoBehaviour
     
     void Update()
     {
-    transform.rotation = Quaternion.Euler(0f, rotatejugador, 0f);  
+
+        if (Input.GetKey(teclaDerecha))
+        {
+            y = -1;
+        }    
+        else if (Input.GetKey(teclaIzquierda))
+        {
+            y = 1;
+        }    
+    if (Input.GetKeyUp(teclaDerecha))
+        {
+            if (Input.GetKeyDown(teclaIzquierda))
+            {
+            y = 1;
+            }   
+            else{
+            y = 0;
+            }     
+        }    
+    if (Input.GetKeyUp(teclaIzquierda))
+        {
+            if (Input.GetKeyDown(teclaDerecha))
+            {
+            y = -1;
+            }  
+            else{
+            y = 0;
+            } 
+        }  
+    if (puedeMoverse && (aturdido.aturdido == false) && (agachado == false))
+    {
+        float velocidadX = y * -velocidad;
+        rb.linearVelocity = new Vector3(velocidadX, rb.linearVelocity.y, rb.linearVelocity.z);
+    }
+    Quaternion rotacionDeseada = Quaternion.Euler(0f, rotatejugador, 0f);
+    transform.rotation = Quaternion.RotateTowards(
+        transform.rotation, 
+        rotacionDeseada, 
+        velocidadRotacion * Time.deltaTime
+    );
     agachado = Keyboard.current.numpad5Key.isPressed; 
     
-        if (Input.GetKeyDown(KeyCode.Keypad8) && puedoSaltar && puedeMoverse && (aturdido.aturdido == false))
+        if (Input.GetKeyDown(teclaSalto) && puedoSaltar && puedeMoverse && (aturdido.aturdido == false))
         {
             
             persoanim.SetTrigger("salto");
@@ -93,31 +138,12 @@ public class controladelanteatras : MonoBehaviour
         moviendoseIzquierda = false;
         moviendoseDerecha = false;
     }
-    if (puedeMoverse && (aturdido.aturdido == false) && (agachado == false))
-    {
-        float velocidadX = y * -velocidad;
-        rb.linearVelocity = new Vector3(velocidadX, rb.linearVelocity.y, rb.linearVelocity.z);
-    }
+ 
 
     
       
 
-    if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            y = -1;
-        }    
-    if (Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            y = 1;
-        }    
-    if (Input.GetKeyUp(KeyCode.Keypad6))
-        {
-            y = 0;
-        }    
-    if (Input.GetKeyUp(KeyCode.Keypad4))
-        {
-            y = 0;
-        }    
+
     persoanim.SetFloat("VelY", -y, 0.1f, Time.deltaTime);
     persoanim.SetFloat("Velx", x, 0.1f, Time.deltaTime);
 
@@ -131,12 +157,12 @@ public class controladelanteatras : MonoBehaviour
             
 
     
-    if (Input.GetKeyDown(KeyCode.Keypad5) && (controlataque.atacando == false))
+    if (Input.GetKeyDown(teclaAgacharse) && (controlataque.atacando == false))
     {
         puedeMoverse = false;
         persoanim.SetTrigger("agacharse");
     }
-    if (Input.GetKeyUp(KeyCode.Keypad5))
+    if (Input.GetKeyUp(teclaAgacharse))
     {
         puedeMoverse = true;
         persoanim.SetBool("SiguesAgachado", false);

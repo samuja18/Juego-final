@@ -46,6 +46,11 @@ public class NEWenemigo : MonoBehaviour
         if((golpeLigero.gameObject.CompareTag("golpe ligero")) && (controlparry == false))
         {
         if (aturdido) return; 
+        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        if (ControlAtaques != null)
+        {
+            ControlAtaques.AtaqueAturdido();
+        }
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,0f, 0f).normalized; 
@@ -56,6 +61,11 @@ public class NEWenemigo : MonoBehaviour
         if((golpeLigero.gameObject.CompareTag("golpe pesado")) && (controlparry == false))
         {
         if (aturdido) return; 
+        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        if (ControlAtaques != null)
+        {
+            ControlAtaques.AtaqueAturdido();
+        }
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,0f, 0f).normalized; 
@@ -66,6 +76,11 @@ public class NEWenemigo : MonoBehaviour
         if((golpeLigero.gameObject.CompareTag("golpe delante pesado")) && (controlparry == false))
         {
         if (aturdido) return; 
+        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        if (ControlAtaques != null)
+        {
+            ControlAtaques.AtaqueAturdido();
+        }
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,0f, 0f).normalized; 
@@ -76,6 +91,11 @@ public class NEWenemigo : MonoBehaviour
         if((golpeLigero.gameObject.CompareTag("golpe delante ligero")) && (controlparry == false))
         {
         if (aturdido) return; 
+        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        if (ControlAtaques != null)
+        {
+            ControlAtaques.AtaqueAturdido();
+        }
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,direccionKnockBackVertical, 0f).normalized; 
@@ -86,6 +106,11 @@ public class NEWenemigo : MonoBehaviour
         if((golpeLigero.gameObject.CompareTag("golpe agachate pesado")) && (controlparry == false))
         {
         if (aturdido) return; 
+        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        if (ControlAtaques != null)
+        {
+            ControlAtaques.AtaqueAturdido();
+        }
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,0f, 0f).normalized; 
@@ -96,6 +121,11 @@ public class NEWenemigo : MonoBehaviour
         if((golpeLigero.gameObject.CompareTag("salto golpe ligero")) && (controlparry == false))
         {
         if (aturdido) return; 
+        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        if (ControlAtaques != null)
+        {
+            ControlAtaques.AtaqueAturdido();
+        }
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,0f, 0f).normalized; 

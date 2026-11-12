@@ -21,7 +21,10 @@ public class ControlAtaques : MonoBehaviour
     public MeshRenderer ataqueDelanteLigeroVisible;
     public Collider ataqueSaltoLigero;
     public MeshRenderer ataqueSaltoLigeroVisible;
-    
+    [Header("Controles Ataques")]
+    public KeyCode parry = KeyCode.C;
+    public KeyCode ataqueLigero = KeyCode.Z;
+    public KeyCode ataquePesado = KeyCode.X;
 
     void Start()
     {
@@ -41,29 +44,30 @@ public class ControlAtaques : MonoBehaviour
         ataqueDelanteLigero.enabled = false;
         ataqueSaltoLigeroVisible.enabled = false;
         ataqueSaltoLigero.enabled = false;
+        
     }
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(parry))
         {
             aataquesanim.SetTrigger("parry");
         }
 
-        if (Input.GetKeyDown(KeyCode.Z) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false))
+        if (Input.GetKeyDown(ataqueLigero) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false))
         {
             atacando = true;
             controlarmovimiento.puedeMoverse = false;
             aataquesanim.SetTrigger("Golpe 1");
         }
-        if (Input.GetKeyDown(KeyCode.Z)  && (controlarmovimiento.AtaqueaAire) && (controlarmovimiento.agachado == false))
+        if (Input.GetKeyDown(ataqueLigero)  && (controlarmovimiento.AtaqueaAire) && (controlarmovimiento.agachado == false))
         {
             atacando = true;
             Debug.Log("ataque SALTO");
             controlarmovimiento.puedeMoverse = false;
             aataquesanim.SetTrigger("salto golpe ligero");
         }
-        if ((Input.GetKeyDown(KeyCode.Z)) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.moviendoseDerecha) && (controlarmovimiento.agachado == false))
+        if ((Input.GetKeyDown(ataqueLigero)) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.moviendoseDerecha) && (controlarmovimiento.agachado == false))
         {
             atacando = true;
             Debug.Log("ataque adelante ligero");
@@ -71,19 +75,19 @@ public class ControlAtaques : MonoBehaviour
             aataquesanim.SetTrigger("Adelante golpe ligero");   
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false))
+        if (Input.GetKeyDown(ataquePesado) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false))
         {
             atacando = true;
             controlarmovimiento.puedeMoverse = false;
             aataquesanim.SetTrigger("Golpe pesado 1");   
         }
-        if ((Input.GetKeyDown(KeyCode.X)) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.moviendoseDerecha) && (controlarmovimiento.agachado == false) )
+        if ((Input.GetKeyDown(ataquePesado)) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.moviendoseDerecha) && (controlarmovimiento.agachado == false) )
         {
             atacando = true;
             controlarmovimiento.puedeMoverse = false;
             aataquesanim.SetTrigger("Adelante golpe pesado");   
         }
-        if ((Input.GetKeyDown(KeyCode.X)) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.agachado) && (controlarmovimiento.agachado == true))
+        if ((Input.GetKeyDown(ataquePesado)) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.agachado) && (controlarmovimiento.agachado == true))
         {
             atacando = true;
             controlarmovimiento.puedeMoverse = false;
@@ -196,6 +200,17 @@ public class ControlAtaques : MonoBehaviour
         Debug.Log("TERMINA PARRY");
         parrycollider.enabled = false;
         parrycollidervisble.enabled = false;
+    }
+
+    public void AtaqueAturdido()
+    {
+        FinalAtaqueBasico();
+        FinalAtaquePesado();
+        FinalAtaqueDelantePesado();
+        FinalDelParry();
+        FinalAtaqueSaltoLigero();
+        FinalAtaqueAdelanteLigero();
+        FinalAtaqueAgachatePesado();
     }
     
 }
