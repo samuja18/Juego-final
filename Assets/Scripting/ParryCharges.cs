@@ -4,9 +4,9 @@ using UnityEngine.UI;
 public class ParryCharges : MonoBehaviour
 {
     [Header("Iconos de carga (en orden)")]
-    public Image[] chargeIcons;   // arrastra aquí Charge1, Charge2, Charge3
+    public Image[] chargeIcons;   // arrastra aquï¿½ Charge1, Charge2, Charge3
 
-    [Header("Configuración")]
+    [Header("Configuraciï¿½n")]
     public int maxCharges = 3;
     public int currentCharges;
 
@@ -18,6 +18,14 @@ public class ParryCharges : MonoBehaviour
     {
         currentCharges = maxCharges;
         UpdateUI();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            UseCharge();
+        }
     }
 
     // Gasta una carga. Devuelve true si se pudo hacer el parry

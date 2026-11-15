@@ -30,17 +30,34 @@ public class NEWenemigo : MonoBehaviour
     public float RECUPERACIONGolpeSaltoLigero = 0.3f;
 
     public float RECUPERACIONESCUDOROTO = 3f;
-
     public bool aturdido;
+
+
+
+    private int danoParry = 34;
+    private int danoGolpeLigero = 4;
+    private int danoGolpePesado = 12;
+    private int danoGolpeDelantePesado = 18;
+    private int danoGolpeDelanteLigero = 8;
+    private int danoGolpeAgachatePesado= 16;
+    private int daanoGolpeSaltoLigero = 8;
 
 
     public Healtbar vida; 
     public ShieldBar escudo; 
-    private bool estadoAnterior;
+    public ParryCharges parry; 
 
+    public static float golpesRecibido;
+
+    private float relantizacionDeTiempo = 0.2f;
+
+
+    private float fixedDeltaTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        this.fixedDeltaTime = Time.fixedDeltaTime;
+
         if(gameObject.name == "jugador1")
             {
                 direccionKnockBack = -1;
@@ -52,48 +69,68 @@ public class NEWenemigo : MonoBehaviour
         aturdido = false;
         controlparry = false;
         rb = GetComponent<Rigidbody>();
+        golpesRecibido = 0;
+        if(golpesRecibido == 0)
+        {
+            vida.gameObject.SetActive(false);
+            escudo.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("dano golpe ligero" + danoGolpeLigero);
+        Debug.Log("golpes recibidos" + golpesRecibido);
+        if(golpesRecibido > 0)
+        {
+            danoGolpeLigero = 4;
+            danoGolpePesado = 12;
+            danoGolpeDelantePesado = 18;
+            danoGolpeDelanteLigero = 8;
+            danoGolpeAgachatePesado= 16;
+            daanoGolpeSaltoLigero = 8;
+            golpesRecibido = golpesRecibido;
+            escudo.gameObject.SetActive(true);
+            vida.gameObject.SetActive(true);
+            
+        }
+
         if(escudo.escudoRoto == true)
         {
         if (aturdido) return; 
         ControlAtaques ControlAtaques = gameObject.GetComponentInParent<ControlAtaques>();
-        if (ControlAtaques != null)
-        {
-            ControlAtaques.AtaqueAturdido();
-        }
+        ControlAtaques.AtaqueAturdido();
+        
         RETROCESO.SetBool("ATURDIDO", true);
         //StartCoroutine(RECUPERACIONKNOCKBACKESCUDOROTO(RECUPERACIONESCUDOROTO));
         aturdido = true;
         }
-        /*
-        if((escudo.escudoRoto == false))
+        
+        if((escudo.escudoRoto == false) && escudo.shield == 100)
         {
-            aturdido = false;
-            RETROCESO.SetBool("ATURDIDO", false);
+        aturdido = false;
+        RETROCESO.SetBool("ATURDIDO", false);
         }
-        */
+        
     }
     
     private void OnTriggerEnter(Collider golpeLigero)
     {
         // parry
-        
+        Debug.Log("ill fuck your butt in smash bros" + golpeLigero.gameObject.name);
         if((golpeLigero.gameObject.CompareTag("parry")))
         {
-        escudo.takeDamage(34);
-        if (aturdido) return; 
-        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
         {
             ControlAtaques.AtaqueAturdido();
-            Debug.Log("ya no estas atacando");
         }
+        escudo.takeDamage(danoParry);
+        if (aturdido) return; 
         aturdido = true;
         RETROCESO.SetBool("ATURDIDO", true);
+        
         StartCoroutine(RECUPERACIONKNOCKBACKPARRY(RECUPERACIONPARRY));
         }
         // parry
@@ -101,16 +138,21 @@ public class NEWenemigo : MonoBehaviour
         // ataque ligero
         if((golpeLigero.gameObject.CompareTag("golpe ligero")) && (controlparry == false))
         {
-        vida.takeDamage(4);
+        if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
+        {
+            danoGolpeLigero = danoGolpeLigero * 3;
+            Time.timeScale = relantizacionDeTiempo;
+        }
+        vida.takeDamage(danoGolpeLigero / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(8);
+        escudo.takeDamage(danoGolpeLigero);
         }
         if (aturdido) return; 
-        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
         {
-            ControlAtaques.AtaqueAturdido();
+            ControlAtaques.FinalAtaqueBasico();
         }
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
@@ -124,13 +166,18 @@ public class NEWenemigo : MonoBehaviour
         // ataque pesado
         if((golpeLigero.gameObject.CompareTag("golpe pesado")) && (controlparry == false))
         {
-        vida.takeDamage(7);
+        if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
+        {
+            danoGolpePesado = danoGolpePesado * 3;
+            Time.timeScale = relantizacionDeTiempo;
+        }
+        vida.takeDamage(danoGolpePesado / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(14);
+        escudo.takeDamage(danoGolpePesado);
         }
         if (aturdido) return; 
-        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
         {
             ControlAtaques.AtaqueAturdido();
@@ -147,13 +194,18 @@ public class NEWenemigo : MonoBehaviour
         // ataque delante pesado
         if((golpeLigero.gameObject.CompareTag("golpe delante pesado")) && (controlparry == false))
         {
-        vida.takeDamage(10);
+        if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
+        {
+            danoGolpeDelantePesado = danoGolpeDelantePesado * 3;
+            Time.timeScale = relantizacionDeTiempo;
+        }
+        vida.takeDamage(danoGolpeDelantePesado / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(20);
+        escudo.takeDamage(danoGolpeDelantePesado);
         } 
         if (aturdido) return; 
-        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
         {
             ControlAtaques.AtaqueAturdido();
@@ -170,13 +222,18 @@ public class NEWenemigo : MonoBehaviour
         // ataque delante ligero
         if((golpeLigero.gameObject.CompareTag("golpe delante ligero")) && (controlparry == false))
         {
-        vida.takeDamage(5);
+        if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
+        {
+            danoGolpeDelanteLigero = danoGolpeDelanteLigero * 3;
+            Time.timeScale = relantizacionDeTiempo;
+        }
+        vida.takeDamage(danoGolpeDelanteLigero / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(10);
+        escudo.takeDamage(danoGolpeDelanteLigero);
         }  
         if (aturdido) return; 
-        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
         {
             ControlAtaques.AtaqueAturdido();
@@ -193,13 +250,18 @@ public class NEWenemigo : MonoBehaviour
         // ataque agachate pesado
         if((golpeLigero.gameObject.CompareTag("golpe agachate pesado")) && (controlparry == false))
         {
-        vida.takeDamage(8);
+        if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
+        {
+            danoGolpeAgachatePesado = danoGolpeAgachatePesado * 3;
+            Time.timeScale = relantizacionDeTiempo;
+        }
+        vida.takeDamage(danoGolpeAgachatePesado / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(16);
+        escudo.takeDamage(danoGolpeAgachatePesado);
         }  
         if (aturdido) return; 
-        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
         {
             ControlAtaques.AtaqueAturdido();
@@ -216,13 +278,18 @@ public class NEWenemigo : MonoBehaviour
         // ataque salto ligero
         if((golpeLigero.gameObject.CompareTag("salto golpe ligero")) && (controlparry == false))
         {
-        vida.takeDamage(6);
+        if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
+        {
+            daanoGolpeSaltoLigero = daanoGolpeSaltoLigero * 3;
+            Time.timeScale = relantizacionDeTiempo;
+        }
+        vida.takeDamage(daanoGolpeSaltoLigero / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(12);
+        escudo.takeDamage(daanoGolpeSaltoLigero);
         } 
         if (aturdido) return; 
-        ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
+        ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
         {
             ControlAtaques.AtaqueAturdido();
@@ -311,36 +378,73 @@ public class NEWenemigo : MonoBehaviour
     private IEnumerator RECUPERACIONKNOCKBACKGolpeDelantePesado(float delay)
     {
         yield return new WaitForSeconds(delay);
+        REAPARECEINTERFAZ();
+        if((Time.timeScale == relantizacionDeTiempo))
+        {
+            Debug.Log("descpngela tiempo");
+            Time.timeScale = 1.0f; 
+        }
         aturdido = false;
         RETROCESO.SetBool("ATURDIDO", false);
+        
     }
     private IEnumerator RECUPERACIONKNOCKBACKGolpeDelanteLigero(float delay)
     {
         yield return new WaitForSeconds(delay);
+        REAPARECEINTERFAZ();
+        if((Time.timeScale == relantizacionDeTiempo))
+        {
+            Debug.Log("descpngela tiempo");
+            Time.timeScale = 1.0f; 
+        }
         aturdido = false;
         RETROCESO.SetBool("ATURDIDO", false);
     }
     private IEnumerator RECUPERACIONKNOCKBACKGolpePesado(float delay)
     {
         yield return new WaitForSeconds(delay);
+        REAPARECEINTERFAZ();
+        if((Time.timeScale == relantizacionDeTiempo))
+        {
+            Debug.Log("descpngela tiempo");
+            Time.timeScale = 1.0f; 
+        }
         aturdido = false;
         RETROCESO.SetBool("ATURDIDO", false);
     }
     private IEnumerator RECUPERACIONKNOCKBACKGolpeLigero(float delay)
     {
         yield return new WaitForSeconds(delay);
+        REAPARECEINTERFAZ();
+        if((Time.timeScale == relantizacionDeTiempo))
+        {
+            Debug.Log("descpngela tiempo");
+            Time.timeScale = 1.0f; 
+        }
         aturdido = false;
         RETROCESO.SetBool("ATURDIDO", false);
     }
     private IEnumerator RECUPERACIONKNOCKBACKGolpeAgachatePesado(float delay)
     {
         yield return new WaitForSeconds(delay);
+        REAPARECEINTERFAZ();
+        if((Time.timeScale == relantizacionDeTiempo))
+        {
+            Debug.Log("descpngela tiempo");
+            Time.timeScale = 1.0f; 
+        }
         aturdido = false;
         RETROCESO.SetBool("ATURDIDO", false);
     }
     private IEnumerator RECUPERACIONKNOCKBACKGolpeSaltoLigero(float delay)
     {
         yield return new WaitForSeconds(delay);
+        REAPARECEINTERFAZ();
+        if((Time.timeScale == relantizacionDeTiempo))
+        {
+            Debug.Log("descpngela tiempo");
+            Time.timeScale = 1.0f; 
+        }
         aturdido = false;
         RETROCESO.SetBool("ATURDIDO", false);
     }
@@ -352,5 +456,13 @@ public class NEWenemigo : MonoBehaviour
         RETROCESO.SetBool("ATURDIDO", false);
     }
     
+    private void REAPARECEINTERFAZ()
+    {
+        golpesRecibido += 1;
+        golpesRecibido = golpesRecibido;
+        escudo.gameObject.SetActive(true);
+        vida.gameObject.SetActive(true);
+            
+    }
 
 }

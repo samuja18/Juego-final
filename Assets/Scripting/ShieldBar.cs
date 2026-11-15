@@ -11,7 +11,7 @@ public class ShieldBar : MonoBehaviour
     public float shield;
 
     [Header("Regeneracion")]
-    public float regenRate = 10f;      // puntos por segundo
+    public float regenRate = 2f;      // puntos por segundo
     public float regenDelay = 10f;      // segundos sin recibir da�o antes de regenerar
     public float brokenDelay = 4f;     // delay m�s largo si el escudo lleg� a 0
 
@@ -42,7 +42,7 @@ public class ShieldBar : MonoBehaviour
         }
         if (escudoRoto == false)
         {
-            regenRate = 5;
+            regenRate = 3;
         }
         Debug.Log(escudoRoto);
         // Regeneraci�n

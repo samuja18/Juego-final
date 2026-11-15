@@ -104,8 +104,9 @@ public class ControlAtaques : MonoBehaviour
         ataquebasico.enabled = true;
     }
 
-    void FinalAtaqueBasico()
+    public void FinalAtaqueBasico()
     {
+        Debug.Log("JUEGPUTADSADASDASDDDDD");
         atacando = false;
         controlarmovimiento.puedeMoverse = true;
         ataqueVisible.enabled = false;
@@ -119,7 +120,7 @@ public class ControlAtaques : MonoBehaviour
         ataquepesado.enabled = true;
     }
 
-    void FinalAtaquePesado()
+    public void FinalAtaquePesado()
     {
         atacando = false;
         controlarmovimiento.puedeMoverse = true;
@@ -134,7 +135,7 @@ public class ControlAtaques : MonoBehaviour
         ataqueAdelantepesado.enabled = true;
     }
 
-    void FinalAtaqueDelantePesado()
+    public void FinalAtaqueDelantePesado()
     {
         atacando = false;
         controlarmovimiento.puedeMoverse = true;
@@ -149,7 +150,7 @@ public class ControlAtaques : MonoBehaviour
         ataqueAgachatepesado.enabled = true;
     }
 
-    void FinalAtaqueAgachatePesado()
+    public void FinalAtaqueAgachatePesado()
     {
         atacando = false;
         controlarmovimiento.puedeMoverse = true;
@@ -164,7 +165,7 @@ public class ControlAtaques : MonoBehaviour
         ataqueDelanteLigero.enabled = true;
     }
 
-    void FinalAtaqueAdelanteLigero()
+    public void FinalAtaqueAdelanteLigero()
     {
         atacando = false;
         controlarmovimiento.puedeMoverse = true;
@@ -179,7 +180,7 @@ public class ControlAtaques : MonoBehaviour
         ataqueSaltoLigero.enabled = true;
     }
 
-    void FinalAtaqueSaltoLigero()
+    public void FinalAtaqueSaltoLigero()
     {
         atacando = false;
         controlarmovimiento.puedeMoverse = true;
@@ -204,6 +205,7 @@ public class ControlAtaques : MonoBehaviour
 
     public void AtaqueAturdido()
     {
+        Debug.Log("SACATE LAS WEASSSSSS");
         FinalAtaqueBasico();
         FinalAtaquePesado();
         FinalAtaqueDelantePesado();
