@@ -36,6 +36,7 @@ public class NEWenemigo : MonoBehaviour
 
     public Healtbar vida; 
     public ShieldBar escudo; 
+    private bool estadoAnterior;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -56,7 +57,6 @@ public class NEWenemigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if(escudo.escudoRoto == true)
         {
         if (aturdido) return; 
@@ -70,14 +70,14 @@ public class NEWenemigo : MonoBehaviour
         aturdido = true;
         }
         /*
-        if(escudo.escudoRoto == false)
+        if((escudo.escudoRoto == false))
         {
             aturdido = false;
             RETROCESO.SetBool("ATURDIDO", false);
         }
         */
     }
-    }
+    
     private void OnTriggerEnter(Collider golpeLigero)
     {
         // parry
