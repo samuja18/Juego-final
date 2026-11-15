@@ -8,6 +8,7 @@ public class Healtbar : MonoBehaviour
     public float maxHealth = 100f;
     public float health;
     private float lerpspeed = 0.05f; 
+    public GameObject Jugador;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,8 +30,20 @@ public class Healtbar : MonoBehaviour
         {
             takeDamage(10);
         }
+        if (health == 0)
+        {
+            if(Jugador.name == "jugador1")
+            {
+                Debug.Log("El ganador fue jugador 2");
+            }
+            if(Jugador.name == "jugador2")
+            {
+                Debug.Log("El ganador fue jugador 1");
+            }
+            
+        }
     }
-    void takeDamage(float damage)
+    public void takeDamage(float damage)
     {
         health -= damage;
     }

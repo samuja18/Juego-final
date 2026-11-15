@@ -11,6 +11,7 @@ public class personajeatras : MonoBehaviour
     public float rotacion;
     public float rotacionknockback;
     public bool inputalrevez;
+    public GameObject Jugador;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,7 +23,15 @@ public class personajeatras : MonoBehaviour
     {
         rotacionknockback = voltearknockback.direccionKnockBack;
     }
-    inputalrevez = false;
+    if(Jugador.name == "jugador1")
+    {
+        inputalrevez = false;
+    }
+    if(Jugador.name == "jugador2")
+    {
+        inputalrevez = true;
+    }
+    
     }
 
     // Update is called once per frame
@@ -46,6 +55,16 @@ public class personajeatras : MonoBehaviour
             inputalrevez = !inputalrevez;
         }
         if (other.gameObject.CompareTag("jugador2") && (novoltear.atacando == false))
+        {
+            voltearknockback.direccionKnockBack = -rotacionknockback;
+        }
+        if (other.gameObject.CompareTag("jugador1") && (novoltear.atacando == false))
+        {
+            Debug.Log("VOLTEATE PERSOnAJE 1");
+            voltearpersonaje.rotatejugador = -rotacion;
+            inputalrevez = !inputalrevez;
+        }
+        if (other.gameObject.CompareTag("jugador1") && (novoltear.atacando == false))
         {
             voltearknockback.direccionKnockBack = -rotacionknockback;
         }

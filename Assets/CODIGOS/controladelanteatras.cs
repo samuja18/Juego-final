@@ -37,18 +37,40 @@ public class controladelanteatras : MonoBehaviour
     public KeyCode teclaIzquierda = KeyCode.Keypad4;
     public KeyCode teclaAgacharse = KeyCode.Keypad5;
     public KeyCode teclaSalto = KeyCode.Keypad8;
+    public InputAction botonDerecha = new InputAction(binding: "<Gamepad>/dpad/right");
+    public InputAction botonIzquierda = new InputAction(binding: "<Gamepad>/dpad/left");
+    public InputAction botonAgacharse = new InputAction(binding: "<Gamepad>/dpad/down");
+    public InputAction botonSalto = new InputAction(binding: "<Gamepad>/dpad/up");
     void Awake()
     { 
         persoanim = GetComponent<Animator>();
     }
+//Para control mando
+    private void OnEnable()
+{
+    botonDerecha.Enable();
+}
+
+private void OnDisable()
+{
+    botonDerecha.Disable();
+}
+//Para control mando
 
     void Start()
     {
+        if(gameObject.name == "jugador1")
+        {
+        transform.rotation = Quaternion.Euler(new Vector3(0f, rotatejugador, 0f));
+        }
+        if(gameObject.name == "jugador2")
+        {
+        transform.rotation = Quaternion.Euler(new Vector3(0f, -rotatejugador, 0f));
+        }
         estatico = true;
         moviendoseIzquierda = false;
         moviendoseDerecha = false;
         puedeMoverse = true;
-        transform.rotation = Quaternion.Euler(new Vector3(0f, rotatejugador, 0f));
         puedeMoverse = true;
         puedoSaltar = true;
         rb = GetComponent<Rigidbody>();
@@ -90,15 +112,28 @@ public class controladelanteatras : MonoBehaviour
         float velocidadX = y * -velocidad;
         rb.linearVelocity = new Vector3(velocidadX, rb.linearVelocity.y, rb.linearVelocity.z);
     }
-    Quaternion rotacionDeseada = Quaternion.Euler(0f, rotatejugador, 0f);
-    transform.rotation = Quaternion.RotateTowards(
+    if(gameObject.name == "jugador1")
+    {
+        Quaternion rotacionDeseada = Quaternion.Euler(0f, rotatejugador, 0f);
+        transform.rotation = Quaternion.RotateTowards(
         transform.rotation, 
         rotacionDeseada, 
         velocidadRotacion * Time.deltaTime
     );
+    }
+    if(gameObject.name == "jugador2")
+    {
+        Quaternion rotacionDeseada = Quaternion.Euler(0f, -rotatejugador, 0f);
+        transform.rotation = Quaternion.RotateTowards(
+        transform.rotation, 
+        rotacionDeseada, 
+        velocidadRotacion * Time.deltaTime
+    );
+    }
+    
     if(AtaqueaAire == false)
     {
-    agachado = Keyboard.current.numpad5Key.isPressed; 
+    agachado = Input.GetKey(teclaAgacharse); 
     }
 
         if (Input.GetKeyDown(teclaSalto) && puedoSaltar && puedeMoverse && (aturdido.aturdido == false))

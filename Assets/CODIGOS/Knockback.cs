@@ -14,6 +14,9 @@ public class NEWenemigo : MonoBehaviour
     public float KIROknockBackGolpeDelanteLigero = 5f;
     public float KIROknockBackGolpeAgachatePesado = 6f;
     public float KIROknockBackGolpeSaltoLigero = 3f;
+
+
+
     public bool controlparry;
     public Animator RETROCESO;
      [SerializeField] private UnityEvent DejaDeParry; 
@@ -26,11 +29,25 @@ public class NEWenemigo : MonoBehaviour
     public float RECUPERACIONGolpeAgachatePesado= 0.6f;
     public float RECUPERACIONGolpeSaltoLigero = 0.3f;
 
+    public float RECUPERACIONESCUDOROTO = 3f;
+
     public bool aturdido;
+
+
+    public Healtbar vida; 
+    public ShieldBar escudo; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if(gameObject.name == "jugador1")
+            {
+                direccionKnockBack = -1;
+            }
+        if(gameObject.name == "jugador2")
+            {
+                direccionKnockBack = 1;
+            }
         aturdido = false;
         controlparry = false;
         rb = GetComponent<Rigidbody>();
@@ -39,14 +56,35 @@ public class NEWenemigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
+        if(escudo.escudoRoto == true)
+        {
+        if (aturdido) return; 
+        ControlAtaques ControlAtaques = gameObject.GetComponentInParent<ControlAtaques>();
+        if (ControlAtaques != null)
+        {
+            ControlAtaques.AtaqueAturdido();
+        }
+        RETROCESO.SetBool("ATURDIDO", true);
+        //StartCoroutine(RECUPERACIONKNOCKBACKESCUDOROTO(RECUPERACIONESCUDOROTO));
+        aturdido = true;
+        }
+        /*
+        if(escudo.escudoRoto == false)
+        {
+            aturdido = false;
+            RETROCESO.SetBool("ATURDIDO", false);
+        }
+        */
     }
-    
+    }
     private void OnTriggerEnter(Collider golpeLigero)
     {
         // parry
+        
         if((golpeLigero.gameObject.CompareTag("parry")))
         {
+        escudo.takeDamage(34);
         if (aturdido) return; 
         ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
@@ -59,8 +97,15 @@ public class NEWenemigo : MonoBehaviour
         StartCoroutine(RECUPERACIONKNOCKBACKPARRY(RECUPERACIONPARRY));
         }
         // parry
+
+        // ataque ligero
         if((golpeLigero.gameObject.CompareTag("golpe ligero")) && (controlparry == false))
         {
+        vida.takeDamage(4);
+        if (escudo.escudoRoto == false)
+        {
+        escudo.takeDamage(8);
+        }
         if (aturdido) return; 
         ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
@@ -74,8 +119,16 @@ public class NEWenemigo : MonoBehaviour
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpeLigero(RECUPERACIONGolpeLigero));
         }
+        // ataque ligero
+
+        // ataque pesado
         if((golpeLigero.gameObject.CompareTag("golpe pesado")) && (controlparry == false))
         {
+        vida.takeDamage(7);
+        if (escudo.escudoRoto == false)
+        {
+        escudo.takeDamage(14);
+        }
         if (aturdido) return; 
         ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
@@ -89,8 +142,16 @@ public class NEWenemigo : MonoBehaviour
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpePesado(RECUPERACIONGolpePesado));
         }
+        // ataque pesado
+
+        // ataque delante pesado
         if((golpeLigero.gameObject.CompareTag("golpe delante pesado")) && (controlparry == false))
         {
+        vida.takeDamage(10);
+        if (escudo.escudoRoto == false)
+        {
+        escudo.takeDamage(20);
+        } 
         if (aturdido) return; 
         ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
@@ -104,8 +165,16 @@ public class NEWenemigo : MonoBehaviour
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpeDelantePesado(RECUPERACIONGolpeDelantePesado));
         }
+        // ataque delante pesado
+
+        // ataque delante ligero
         if((golpeLigero.gameObject.CompareTag("golpe delante ligero")) && (controlparry == false))
         {
+        vida.takeDamage(5);
+        if (escudo.escudoRoto == false)
+        {
+        escudo.takeDamage(10);
+        }  
         if (aturdido) return; 
         ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
@@ -119,8 +188,16 @@ public class NEWenemigo : MonoBehaviour
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpeDelanteLigero(RECUPERACIONGolpeDelanteLigero));
         }
+        // ataque delante ligero
+
+        // ataque agachate pesado
         if((golpeLigero.gameObject.CompareTag("golpe agachate pesado")) && (controlparry == false))
         {
+        vida.takeDamage(8);
+        if (escudo.escudoRoto == false)
+        {
+        escudo.takeDamage(16);
+        }  
         if (aturdido) return; 
         ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
@@ -134,8 +211,16 @@ public class NEWenemigo : MonoBehaviour
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpeAgachatePesado(RECUPERACIONGolpeAgachatePesado));
         }
+        // ataque agachate pesado
+
+        // ataque salto ligero
         if((golpeLigero.gameObject.CompareTag("salto golpe ligero")) && (controlparry == false))
         {
+        vida.takeDamage(6);
+        if (escudo.escudoRoto == false)
+        {
+        escudo.takeDamage(12);
+        } 
         if (aturdido) return; 
         ControlAtaques ControlAtaques = golpeLigero.GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
@@ -150,11 +235,14 @@ public class NEWenemigo : MonoBehaviour
         StartCoroutine(RECUPERACIONKNOCKBACKGolpeSaltoLigero(RECUPERACIONGolpeSaltoLigero));
         aturdido = true;
         }
+        // ataque salto ligero
         
         if(controlparry == true){
             controlparry = false;
 
         }
+
+        
     
     }
 
@@ -256,6 +344,13 @@ public class NEWenemigo : MonoBehaviour
         aturdido = false;
         RETROCESO.SetBool("ATURDIDO", false);
     }
-
+    
+    private void RECUPERACIONKNOCKBACKESCUDOROTO()
+    {
+    
+        aturdido = false;
+        RETROCESO.SetBool("ATURDIDO", false);
+    }
+    
 
 }

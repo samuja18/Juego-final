@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "name": "jugador 1",
+    "maps": [
+        {
+            "name": "movimiento",
+            "id": "f0d19613-a23f-40f1-9050-f916f735661b",
+            "actions": [
+                {
+                    "name": "derecha",
+                    "type": "Button",
+                    "id": "b3efff05-0ef6-4a21-a135-16b40a704604",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0bd0f756-c5c6-412a-84dc-88d0eb83a71e",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "derecha",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New Control Scheme",
+            "bindingGroup": "New Control Scheme",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
