@@ -16,13 +16,13 @@ public class ParryCharges : MonoBehaviour
 
     void Start()
     {
-        currentCharges = maxCharges;
+        currentCharges = 0;
         UpdateUI();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             UseCharge();
         }
@@ -52,11 +52,14 @@ public class ParryCharges : MonoBehaviour
         return currentCharges > 0;
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
-        for (int i = 0; i < chargeIcons.Length; i++)
+        
+            for (int i = 0; i < chargeIcons.Length; i++)
         {
             chargeIcons[i].color = (i < currentCharges) ? fullColor : emptyColor;
         }
+        
+        
     }
 }

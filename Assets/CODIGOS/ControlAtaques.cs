@@ -25,6 +25,7 @@ public class ControlAtaques : MonoBehaviour
     public KeyCode parry = KeyCode.C;
     public KeyCode ataqueLigero = KeyCode.Z;
     public KeyCode ataquePesado = KeyCode.X;
+    public ParryCharges parryCargas;
 
     void Start()
     {
@@ -49,8 +50,9 @@ public class ControlAtaques : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(parry) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false))
+        if (Input.GetKeyDown(parry) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false) && (parryCargas.currentCharges > 0))
         {
+            parryCargas.UseCharge();
             aataquesanim.SetTrigger("parry");
         }
 

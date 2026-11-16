@@ -72,6 +72,7 @@ public class NEWenemigo : MonoBehaviour
         golpesRecibido = 0;
         if(golpesRecibido == 0)
         {
+            //parry.currentCharges = 0;
             vida.gameObject.SetActive(false);
             escudo.gameObject.SetActive(false);
         }
@@ -93,7 +94,8 @@ public class NEWenemigo : MonoBehaviour
             golpesRecibido = golpesRecibido;
             escudo.gameObject.SetActive(true);
             vida.gameObject.SetActive(true);
-            
+            parry.currentCharges = parry.maxCharges;
+            parry.UpdateUI();
         }
 
         if(escudo.escudoRoto == true)
@@ -462,7 +464,6 @@ public class NEWenemigo : MonoBehaviour
         golpesRecibido = golpesRecibido;
         escudo.gameObject.SetActive(true);
         vida.gameObject.SetActive(true);
-            
     }
 
 }
