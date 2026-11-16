@@ -83,7 +83,8 @@ public class NEWenemigo : MonoBehaviour
     {
         Debug.Log("dano golpe ligero" + danoGolpeLigero);
         Debug.Log("golpes recibidos" + golpesRecibido);
-        if(golpesRecibido > 0)
+        
+        if(golpesRecibido == 1)
         {
             danoGolpeLigero = 4;
             danoGolpePesado = 12;
@@ -94,7 +95,7 @@ public class NEWenemigo : MonoBehaviour
             golpesRecibido = golpesRecibido;
             escudo.gameObject.SetActive(true);
             vida.gameObject.SetActive(true);
-            parry.currentCharges = parry.maxCharges;
+            parry.currentCharges = 3;
             parry.UpdateUI();
         }
 
@@ -464,6 +465,9 @@ public class NEWenemigo : MonoBehaviour
         golpesRecibido = golpesRecibido;
         escudo.gameObject.SetActive(true);
         vida.gameObject.SetActive(true);
+        parry.currentCharges = 3;
     }
+    
 
+    
 }

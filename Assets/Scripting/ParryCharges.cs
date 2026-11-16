@@ -16,7 +16,10 @@ public class ParryCharges : MonoBehaviour
 
     void Start()
     {
-        currentCharges = 0;
+        //currentCharges = 3;
+        UseCharge();
+        UseCharge();
+        UseCharge();
         UpdateUI();
     }
 
@@ -25,6 +28,7 @@ public class ParryCharges : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             UseCharge();
+            UpdateUI();
         }
     }
 
