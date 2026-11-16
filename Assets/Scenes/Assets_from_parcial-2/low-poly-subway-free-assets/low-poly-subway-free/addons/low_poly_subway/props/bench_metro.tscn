@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="PackedScene" path="res://addons/low_poly_subway/models/bench_metro_model.glb" id="1"]
+
+[sub_resource type="BoxShape3D" id="box0"]
+size = Vector3(1.7000, 0.4300, 0.4500)
+
+[sub_resource type="BoxShape3D" id="box1"]
+size = Vector3(0.5600, 0.0120, 0.4200)
+
+[sub_resource type="BoxShape3D" id="box2"]
+size = Vector3(0.5600, 0.3960, 0.0812)
+
+[sub_resource type="BoxShape3D" id="box3"]
+size = Vector3(0.5600, 0.0120, 0.4200)
+
+[sub_resource type="BoxShape3D" id="box4"]
+size = Vector3(0.5600, 0.3960, 0.0812)
+
+[sub_resource type="BoxShape3D" id="box5"]
+size = Vector3(0.5600, 0.0120, 0.4200)
+
+[sub_resource type="BoxShape3D" id="box6"]
+size = Vector3(0.5600, 0.3960, 0.0812)
+
+[sub_resource type="BoxShape3D" id="box7"]
+size = Vector3(0.0300, 0.1864, 0.3201)
+
+[sub_resource type="BoxShape3D" id="box8"]
+size = Vector3(0.0300, 0.1864, 0.3201)
+
+[node name="bench_metro" instance=ExtResource("1")]
+
+[node name="Collision" type="StaticBody3D" parent="bench_metro"]
+
+[node name="Box" type="CollisionShape3D" parent="bench_metro/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 0.2150, -0.0000)
+shape = SubResource("box0")
+
+[node name="Collision" type="StaticBody3D" parent="bench_metro/bench_metro_seat0"]
+
+[node name="Box" type="CollisionShape3D" parent="bench_metro/bench_metro_seat0/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6000, 0.4500, 0.0200)
+shape = SubResource("box1")
+
+[node name="Collision" type="StaticBody3D" parent="bench_metro/bench_metro_back0"]
+
+[node name="Box" type="CollisionShape3D" parent="bench_metro/bench_metro_back0/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6000, 0.6767, -0.2382)
+shape = SubResource("box2")
+
+[node name="Collision" type="StaticBody3D" parent="bench_metro/bench_metro_seat1"]
+
+[node name="Box" type="CollisionShape3D" parent="bench_metro/bench_metro_seat1/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 0.4500, 0.0200)
+shape = SubResource("box3")
+
+[node name="Collision" type="StaticBody3D" parent="bench_metro/bench_metro_back1"]
+
+[node name="Box" type="CollisionShape3D" parent="bench_metro/bench_metro_back1/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 0.6767, -0.2382)
+shape = SubResource("box4")
+
+[node name="Collision" type="StaticBody3D" parent="bench_metro/bench_metro_seat2"]
+
+[node name="Box" type="CollisionShape3D" parent="bench_metro/bench_metro_seat2/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6000, 0.4500, 0.0200)
+shape = SubResource("box5")
+
+[node name="Collision" type="StaticBody3D" parent="bench_metro/bench_metro_back2"]
+
+[node name="Box" type="CollisionShape3D" parent="bench_metro/bench_metro_back2/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6000, 0.6767, -0.2382)
+shape = SubResource("box6")
+
+[node name="Collision" type="StaticBody3D" parent="bench_metro/bench_metro_arm0"]
+
+[node name="Box" type="CollisionShape3D" parent="bench_metro/bench_metro_arm0/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3000, 0.5400, 0.0030)
+shape = SubResource("box7")
+
+[node name="Collision" type="StaticBody3D" parent="bench_metro/bench_metro_arm1"]
+
+[node name="Box" type="CollisionShape3D" parent="bench_metro/bench_metro_arm1/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3000, 0.5400, 0.0030)
+shape = SubResource("box8")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://addons/low_poly_subway/models/lamp_trough_metro_model.glb" id="1"]
+[ext_resource type="Script" path="res://addons/low_poly_subway/machine.gd" id="2"]
+
+[sub_resource type="BoxShape3D" id="box0"]
+size = Vector3(0.1600, 0.0640, 1.6000)
+
+[sub_resource type="BoxShape3D" id="box1"]
+size = Vector3(0.1200, 0.0050, 1.5600)
+
+[node name="lamp_trough_metro" instance=ExtResource("1")]
+script = ExtResource("2")
+kind = "powered"
+on = true
+lit = PackedStringArray("lamp_trough_metro_lens")
+
+[node name="Collision" type="StaticBody3D" parent="lamp_trough_metro"]
+
+[node name="Box" type="CollisionShape3D" parent="lamp_trough_metro/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 3.9280, -0.0000)
+shape = SubResource("box0")
+
+[node name="Collision" type="StaticBody3D" parent="lamp_trough_metro/lamp_trough_metro_lens"]
+
+[node name="Box" type="CollisionShape3D" parent="lamp_trough_metro/lamp_trough_metro_lens/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0000, 3.8950, -0.0000)
+shape = SubResource("box1")
