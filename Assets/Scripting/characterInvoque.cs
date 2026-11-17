@@ -6,6 +6,7 @@ public class characterInvoque : MonoBehaviour
     public GameObject kiro;
     public GameObject pointB;
     public GameObject kakareta;
+    public Transform spawnPoint;
     void Start()
     {
         
@@ -16,16 +17,16 @@ public class characterInvoque : MonoBehaviour
     {
         if (character == "Kiro")
         {
-            Instantiate(kiro);
+            Instantiate(kiro, spawnPoint.position, spawnPoint.rotation);
             Debug.Log("personaje cargado");
         }
         if (character == "PointB")
         {
-            Instantiate(pointB);
+            Instantiate(pointB, spawnPoint.position, spawnPoint.rotation);
         }
         if (character == "Kakareta")
         {
-            Instantiate(kakareta);
+            Instantiate(kakareta, spawnPoint.position, spawnPoint.rotation);
         }
     }
     
