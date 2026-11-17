@@ -51,8 +51,9 @@ public class ControlAtaques : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(parry) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false) && (parryCargas.currentCharges > 0))
+        if (Input.GetKeyDown(parry) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false) && (parryCargas.currentCharges > 0) && (KnockBack.AtaqueCargado == false))
         {
+            
             NEWenemigo.golpesRecibido += 1;
             parryCargas.UseCharge();
             parryCargas.UpdateUI();
@@ -61,12 +62,22 @@ public class ControlAtaques : MonoBehaviour
 
         if (Input.GetKeyDown(ataqueLigero) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false))
         {
+            if(KnockBack.AtaqueCargado == true)
+            {
+                parryCargas.UseCharge();
+                parryCargas.UpdateUI();
+            }
             atacando = true;
             controlarmovimiento.puedeMoverse = false;
             aataquesanim.SetTrigger("Golpe 1");
         }
         if (Input.GetKeyDown(ataqueLigero)  && (controlarmovimiento.AtaqueaAire) && (controlarmovimiento.agachado == false))
         {
+            if(KnockBack.AtaqueCargado == true)
+            {
+                parryCargas.UseCharge();
+                parryCargas.UpdateUI();
+            }
             atacando = true;
             Debug.Log("ataque SALTO");
             controlarmovimiento.puedeMoverse = false;
@@ -74,6 +85,11 @@ public class ControlAtaques : MonoBehaviour
         }
         if ((Input.GetKeyDown(ataqueLigero)) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.moviendoseDerecha) && (controlarmovimiento.agachado == false))
         {
+            if(KnockBack.AtaqueCargado == true)
+            {
+                parryCargas.UseCharge();
+                parryCargas.UpdateUI();
+            }
             atacando = true;
             Debug.Log("ataque adelante ligero");
             controlarmovimiento.puedeMoverse = false;
@@ -82,18 +98,33 @@ public class ControlAtaques : MonoBehaviour
 
         if (Input.GetKeyDown(ataquePesado) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.estatico) && (controlarmovimiento.agachado == false))
         {
+            if(KnockBack.AtaqueCargado == true)
+            {
+                parryCargas.UseCharge();
+                parryCargas.UpdateUI();
+            }
             atacando = true;
             controlarmovimiento.puedeMoverse = false;
             aataquesanim.SetTrigger("Golpe pesado 1");   
         }
         if ((Input.GetKeyDown(ataquePesado)) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.moviendoseDerecha) && (controlarmovimiento.agachado == false) )
         {
+            if(KnockBack.AtaqueCargado == true)
+            {
+                parryCargas.UseCharge();
+                parryCargas.UpdateUI();
+            }
             atacando = true;
             controlarmovimiento.puedeMoverse = false;
             aataquesanim.SetTrigger("Adelante golpe pesado");   
         }
         if ((Input.GetKeyDown(ataquePesado)) && (controlarmovimiento.AtaqueaAire == false) && (controlarmovimiento.agachado) && (controlarmovimiento.agachado == true))
         {
+            if(KnockBack.AtaqueCargado == true)
+            {
+                parryCargas.UseCharge();
+                parryCargas.UpdateUI();
+            }
             atacando = true;
             controlarmovimiento.puedeMoverse = false;
             aataquesanim.SetTrigger("Agachate golpe pesado");   

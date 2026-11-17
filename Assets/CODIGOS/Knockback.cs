@@ -34,28 +34,43 @@ public class NEWenemigo : MonoBehaviour
 
 
 
-    private int danoParry = 34;
-    private int danoGolpeLigero = 4;
-    private int danoGolpePesado = 12;
-    private int danoGolpeDelantePesado = 18;
-    private int danoGolpeDelanteLigero = 8;
-    private int danoGolpeAgachatePesado= 16;
-    private int daanoGolpeSaltoLigero = 8;
+    public int danoParry = 34;
+    public int danoGolpeLigero = 4;
+    public int danoGolpePesado = 12;
+    public int danoGolpeDelantePesado = 18;
+    public int danoGolpeDelanteLigero = 8;
+    public int danoGolpeAgachatePesado= 16;
+    public int daanoGolpeSaltoLigero = 8;
 
 
     public Healtbar vida; 
     public ShieldBar escudo; 
     public ParryCharges parry; 
-
+    public GameObject ganaste1;
+    public GameObject ganaste2;
+    public GameObject jugador;
     public static float golpesRecibido;
-
     private float relantizacionDeTiempo = 0.2f;
 
 
+
+    public GameObject AURA;
+    public bool AtaqueCargado = false;
+    public KeyCode CARGADO;
     private float fixedDeltaTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        danoGolpeLigero = 4;
+        danoGolpePesado = 12;
+        danoGolpeDelantePesado = 18;
+        danoGolpeDelanteLigero = 8;
+        danoGolpeAgachatePesado= 16;
+        daanoGolpeSaltoLigero = 8;
+        AtaqueCargado = false;
+        AURA.SetActive(false);
+        ganaste1.SetActive(false);
+        ganaste2.SetActive(false);
         this.fixedDeltaTime = Time.fixedDeltaTime;
 
         if(gameObject.name == "jugador1")
@@ -70,20 +85,46 @@ public class NEWenemigo : MonoBehaviour
         controlparry = false;
         rb = GetComponent<Rigidbody>();
         golpesRecibido = 0;
-        if(golpesRecibido == 0)
-        {
-            //parry.currentCharges = 0;
-            vida.gameObject.SetActive(false);
-            escudo.gameObject.SetActive(false);
-        }
+        vida.gameObject.SetActive(false);
+        escudo.gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("dano golpe ligero" + danoGolpeLigero);
-        Debug.Log("golpes recibidos" + golpesRecibido);
-        
+        if(parry.currentCharges >  0)
+        {
+            AtaqueCargado = Input.GetKey(CARGADO);
+            if(AtaqueCargado == false)
+                {
+            danoGolpeLigero = 4;
+            danoGolpePesado = 12;
+            danoGolpeDelantePesado = 18;
+            danoGolpeDelanteLigero = 8;
+            danoGolpeAgachatePesado= 16;
+            daanoGolpeSaltoLigero = 8;
+            AURA.SetActive(false);
+                }
+            if(AtaqueCargado == true)
+                {
+            danoGolpeLigero =  40;
+            danoGolpePesado = 40;
+            danoGolpeDelantePesado = 40;
+            danoGolpeDelanteLigero = 40;
+            danoGolpeAgachatePesado= 40;
+            daanoGolpeSaltoLigero = 40;
+            Debug.Log("tu dano es de" + danoGolpeLigero);
+            AURA.SetActive(true);
+                }
+
+        }
+        if(parry.currentCharges == 0)
+                {
+            AtaqueCargado = false;
+            danoGolpeLigero = 4;
+            AURA.SetActive(false);
+                }
         if(golpesRecibido == 1)
         {
             danoGolpeLigero = 4;
@@ -120,9 +161,10 @@ public class NEWenemigo : MonoBehaviour
     
     private void OnTriggerEnter(Collider golpeLigero)
     {
+
         // parry
         Debug.Log("ill fuck your butt in smash bros" + golpeLigero.gameObject.name);
-        if((golpeLigero.gameObject.CompareTag("parry")))
+        if((golpeLigero.gameObject.CompareTag("parry") && (AtaqueCargado == false)))
         {
         ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
@@ -137,19 +179,27 @@ public class NEWenemigo : MonoBehaviour
         StartCoroutine(RECUPERACIONKNOCKBACKPARRY(RECUPERACIONPARRY));
         }
         // parry
-
+        
         // ataque ligero
         if((golpeLigero.gameObject.CompareTag("golpe ligero")) && (controlparry == false))
         {
-        if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
+        NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
+        float danoFinal = (atacante != null) ? atacante.danoGolpeLigero : danoGolpeLigero;
+
+        if (((golpesRecibido == 0) && (Time.timeScale == 1.0f)))
         {
-            danoGolpeLigero = danoGolpeLigero * 3;
+            danoFinal = danoFinal * 5 ;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(danoGolpeLigero / 4);
+        Debug.Log("=== IMPACTO DETECTADO ===");
+        Debug.Log("Objeto que golpeó (hitbox): " + golpeLigero.gameObject.name + " | Raíz: " + golpeLigero.transform.root.name);
+        Debug.Log("Atacante encontrado: " + (atacante != null ? atacante.gameObject.name : "NINGUNO (NULL)"));
+        Debug.Log("Daño del atacante: " + (atacante != null ? atacante.danoGolpeLigero.ToString() : "N/A"));
+        Debug.Log("Daño local (defensor): " + danoGolpeLigero);
+        vida.takeDamage(danoFinal / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(danoGolpeLigero);
+        escudo.takeDamage(danoFinal);
         }
         if (aturdido) return; 
         ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
@@ -163,21 +213,24 @@ public class NEWenemigo : MonoBehaviour
         rb.AddForce(impulso * KIROknockBackGolpeLigero, ForceMode.Impulse);
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpeLigero(RECUPERACIONGolpeLigero));
+        golpesRecibido += 1;
         }
         // ataque ligero
 
         // ataque pesado
         if((golpeLigero.gameObject.CompareTag("golpe pesado")) && (controlparry == false))
         {
+        NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
+        float danoFinal = (atacante != null) ? atacante.danoGolpePesado : danoGolpePesado;
         if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
         {
-            danoGolpePesado = danoGolpePesado * 3;
+            danoFinal = danoFinal * 5;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(danoGolpePesado / 4);
+        vida.takeDamage(danoFinal / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(danoGolpePesado);
+        escudo.takeDamage(danoFinal);
         }
         if (aturdido) return; 
         ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
@@ -191,21 +244,24 @@ public class NEWenemigo : MonoBehaviour
         rb.AddForce(impulso * KIROknockBackGolpePesado, ForceMode.Impulse);
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpePesado(RECUPERACIONGolpePesado));
+        golpesRecibido += 1;
         }
         // ataque pesado
 
         // ataque delante pesado
         if((golpeLigero.gameObject.CompareTag("golpe delante pesado")) && (controlparry == false))
         {
+        NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
+        float danoFinal = (atacante != null) ? atacante.danoGolpeDelantePesado : danoGolpeDelantePesado;
         if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
         {
-            danoGolpeDelantePesado = danoGolpeDelantePesado * 3;
+            danoFinal = danoFinal * 3;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(danoGolpeDelantePesado / 4);
+        vida.takeDamage(danoFinal / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(danoGolpeDelantePesado);
+        escudo.takeDamage(danoFinal);
         } 
         if (aturdido) return; 
         ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
@@ -219,21 +275,24 @@ public class NEWenemigo : MonoBehaviour
         rb.AddForce(impulso * KIROknockBackGolpeDelantePesado, ForceMode.Impulse);
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpeDelantePesado(RECUPERACIONGolpeDelantePesado));
+        golpesRecibido += 1;
         }
         // ataque delante pesado
 
         // ataque delante ligero
         if((golpeLigero.gameObject.CompareTag("golpe delante ligero")) && (controlparry == false))
         {
+        NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
+        float danoFinal = (atacante != null) ? atacante.danoGolpeDelanteLigero : danoGolpeDelanteLigero;
         if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
         {
-            danoGolpeDelanteLigero = danoGolpeDelanteLigero * 3;
+            danoFinal = danoFinal * 3;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(danoGolpeDelanteLigero / 4);
+        vida.takeDamage(danoFinal / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(danoGolpeDelanteLigero);
+        escudo.takeDamage(danoFinal);
         }  
         if (aturdido) return; 
         ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
@@ -247,21 +306,24 @@ public class NEWenemigo : MonoBehaviour
         rb.AddForce(impulso * KIROknockBackGolpeDelanteLigero, ForceMode.Impulse);
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpeDelanteLigero(RECUPERACIONGolpeDelanteLigero));
+        golpesRecibido += 1;
         }
         // ataque delante ligero
 
         // ataque agachate pesado
         if((golpeLigero.gameObject.CompareTag("golpe agachate pesado")) && (controlparry == false))
         {
+        NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
+        float danoFinal = (atacante != null) ? atacante.danoGolpeAgachatePesado : danoGolpeAgachatePesado;
         if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
         {
-            danoGolpeAgachatePesado = danoGolpeAgachatePesado * 3;
+            danoFinal = danoFinal * 3;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(danoGolpeAgachatePesado / 4);
+        vida.takeDamage(danoFinal / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(danoGolpeAgachatePesado);
+        escudo.takeDamage(danoFinal);
         }  
         if (aturdido) return; 
         ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
@@ -275,21 +337,24 @@ public class NEWenemigo : MonoBehaviour
         rb.AddForce(impulso * KIROknockBackGolpeAgachatePesado, ForceMode.Impulse);
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpeAgachatePesado(RECUPERACIONGolpeAgachatePesado));
+        golpesRecibido += 1;
         }
         // ataque agachate pesado
 
         // ataque salto ligero
         if((golpeLigero.gameObject.CompareTag("salto golpe ligero")) && (controlparry == false))
         {
+        NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
+        float danoFinal = (atacante != null) ? atacante.daanoGolpeSaltoLigero : daanoGolpeSaltoLigero;
         if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
         {
-            daanoGolpeSaltoLigero = daanoGolpeSaltoLigero * 3;
+            danoFinal = danoFinal * 3;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(daanoGolpeSaltoLigero / 4);
+        vida.takeDamage(danoFinal / 4);
         if (escudo.escudoRoto == false)
         {
-        escudo.takeDamage(daanoGolpeSaltoLigero);
+        escudo.takeDamage(danoFinal);
         } 
         if (aturdido) return; 
         ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
@@ -304,6 +369,7 @@ public class NEWenemigo : MonoBehaviour
         RETROCESO.SetBool("ATURDIDO", true);
         StartCoroutine(RECUPERACIONKNOCKBACKGolpeSaltoLigero(RECUPERACIONGolpeSaltoLigero));
         aturdido = true;
+        golpesRecibido += 1;
         }
         // ataque salto ligero
         
@@ -468,6 +534,6 @@ public class NEWenemigo : MonoBehaviour
         parry.currentCharges = 3;
     }
     
-
+    
     
 }

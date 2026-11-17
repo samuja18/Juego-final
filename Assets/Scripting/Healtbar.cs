@@ -9,9 +9,16 @@ public class Healtbar : MonoBehaviour
     public float health;
     private float lerpspeed = 0.05f; 
     public GameObject Jugador;
+    public NEWenemigo Knockback;
+    public Animator DERROTAAA;
+    public bool yaempezo = false;
+    private float fixedDeltaTime;
+    private float relantizacionDeTiempo = 0.1f;
+    public ControlAtaques ControlAtaques;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        this.fixedDeltaTime = Time.fixedDeltaTime;
         health = maxHealth;
     }
 
@@ -26,21 +33,32 @@ public class Healtbar : MonoBehaviour
         {
             easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, health, lerpspeed);
         }
-        if (health == 0)
+        if ((health == 0) && !yaempezo)
         {
-            if(Jugador.name == "jugador1")
+            yaempezo = true;
+            if((Jugador.name == "jugador1")&& (Time.timeScale == 1.0f))
             {
+                
+                Knockback.ganaste2.SetActive(true);
                 Debug.Log("El ganador fue jugador 2");
+                DERROTAAA.SetTrigger("DERROTAAA");
+                Time.timeScale = relantizacionDeTiempo;
+                ControlAtaques.AtaqueAturdido();
             }
-            if(Jugador.name == "jugador2")
+            if((Jugador.name == "jugador2")&& (Time.timeScale == 1.0f))
             {
+                Knockback.ganaste1.SetActive(true);
                 Debug.Log("El ganador fue jugador 1");
+                DERROTAAA.SetTrigger("DERROTAAA");
+                Time.timeScale = relantizacionDeTiempo;
+                ControlAtaques.AtaqueAturdido();
             }
-            
+
         }
     }
     public void takeDamage(float damage)
     {
         health -= damage;
     }
+   
 }
