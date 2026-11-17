@@ -541,7 +541,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5168200077772432617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e6c4746f343d0a4398667721ec3cbe0, type: 3}
+  m_Script: {fileID: 11500000, guid: abdf64c1a959a4443a684f9530ec0f34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::personajeatras
   voltearknockback: {fileID: 5520009449847430582}
@@ -550,7 +550,6 @@ MonoBehaviour:
   rotacion: 0
   rotacionknockback: 0
   inputalrevez: 0
-  Jugador: {fileID: 1215262441765038021}
 --- !u!1 &5226291655745550063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,7 +2275,6 @@ MonoBehaviour:
   audioSource: {fileID: 8770855372185805037}
   backgroundMusic: {fileID: 8300000, guid: b932005965cc8554e9f7b6502075cf88, type: 3}
   rotatejugador: 90
-  velocidadRotacion: 720
   puedeMoverse: 0
   puedoSaltar: 0
   moviendoseIzquierda: 0
@@ -2287,78 +2285,6 @@ MonoBehaviour:
   controlataque: {fileID: 3604253386649505780}
   alrevez: {fileID: 7306592341322413066}
   aturdido: {fileID: 5520009449847430582}
-  teclaDerecha: 262
-  teclaIzquierda: 260
-  teclaAgacharse: 261
-  teclaSalto: 264
-  botonDerecha:
-    m_Name: Boton Derecha
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 96a8dfc7-4390-470a-9820-e7ac60deeb97
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 2095c20f-b493-4532-8301-fa4a19f1d287
-      m_Path: <Gamepad>/dpad/right
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Boton Derecha
-      m_Flags: 0
-    m_Flags: 0
-  botonIzquierda:
-    m_Name: Boton Izquierda
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 98c3a14d-286d-4785-bb04-d3c219fc9335
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 468de4dd-b0d3-4c40-abda-3074015ecc1b
-      m_Path: <Gamepad>/dpad/left
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Boton Izquierda
-      m_Flags: 0
-    m_Flags: 0
-  botonAgacharse:
-    m_Name: Boton Agacharse
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8751ea64-4e73-4c9c-a675-ce6cefd84f3b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 5c179407-f31e-4cd3-b1a5-49bf727e477c
-      m_Path: <Gamepad>/dpad/down
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Boton Agacharse
-      m_Flags: 0
-    m_Flags: 0
-  botonSalto:
-    m_Name: Boton Salto
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6d8a067d-25a0-4e17-a331-3adabffd0ed8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 897890ee-3807-4d15-abf2-6e47a91e265d
-      m_Path: <Gamepad>/dpad/up
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Boton Salto
-      m_Flags: 0
-    m_Flags: 0
 --- !u!114 &3604253386649505780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2389,11 +2315,6 @@ MonoBehaviour:
   ataqueDelanteLigeroVisible: {fileID: 5934105319618907002}
   ataqueSaltoLigero: {fileID: 2341610261693036901}
   ataqueSaltoLigeroVisible: {fileID: 3475487121981974079}
-  parry: 99
-  ataqueLigero: 122
-  ataquePesado: 120
-  parryCargas: {fileID: 0}
-  KnockBack: {fileID: 0}
 --- !u!54 &5316614406139012816
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2577,7 +2498,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NEWenemigo
   direccionKnockBack: -1
   DELAYknockback: 0.05
-  knockBackPARRY: 6
   KIROknockBackGolpeLigero: 4
   KIROknockBackGolpePesado: 8
   KIROknockBackGolpeDelantePesado: 11
@@ -2589,31 +2509,13 @@ MonoBehaviour:
   DejaDeParry:
     m_PersistentCalls:
       m_Calls: []
-  RECUPERACIONPARRY: 0.7
   RECUPERACIONGolpeLigero: 0.1
   RECUPERACIONGolpePesado: 0.5
   RECUPERACIONGolpeDelantePesado: 0.7
   RECUPERACIONGolpeDelanteLigero: 0.3
   RECUPERACIONGolpeAgachatePesado: 0.6
   RECUPERACIONGolpeSaltoLigero: 0.3
-  RECUPERACIONESCUDOROTO: 3
   aturdido: 0
-  danoParry: 34
-  danoGolpeLigero: 4
-  danoGolpePesado: 12
-  danoGolpeDelantePesado: 18
-  danoGolpeDelanteLigero: 8
-  danoGolpeAgachatePesado: 16
-  daanoGolpeSaltoLigero: 8
-  vida: {fileID: 0}
-  escudo: {fileID: 0}
-  parry: {fileID: 0}
-  ganaste1: {fileID: 0}
-  ganaste2: {fileID: 0}
-  jugador: {fileID: 0}
-  AURA: {fileID: 0}
-  AtaqueCargado: 0
-  CARGADO: 0
 --- !u!4 &1987963666849807743 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f56d2ed1c8f37c2479fefde40918fe6f, type: 3}

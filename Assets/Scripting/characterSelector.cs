@@ -39,6 +39,7 @@ public class characterSelector : MonoBehaviour
     {
         SavePlayerAs(character: "Kakareta");
     }
+    //seleccionar escenario
     //movimiento del menú
     private void Update()
     {
