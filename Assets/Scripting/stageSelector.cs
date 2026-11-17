@@ -1,6 +1,7 @@
 using Unity.VectorGraphics;
 using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ public class stageSelector : MonoBehaviour
 
     public Button streetButton;
     public Button trainButton;
+
+    public Button factoryButton;
+    public Button shipButton;
     public int seleccionado = 0;
 
 
@@ -18,6 +22,8 @@ public class stageSelector : MonoBehaviour
     {
         streetButton.onClick.AddListener(street);
         trainButton.onClick.AddListener(train);
+        factoryButton.onClick.AddListener(Factory);
+        shipButton.onClick.AddListener(Ship);
     }
 
     private void SaveSceneAs(string scene)
@@ -31,6 +37,15 @@ public class stageSelector : MonoBehaviour
     void train()
     {
         SaveSceneAs(scene: "Train");
+    }
+    
+    void Factory()
+    { 
+        SaveSceneAs(scene: "Factory"); 
+    }
+    void Ship()
+    {
+        SaveSceneAs(scene: "Ship");
     }
 
     private void Update()

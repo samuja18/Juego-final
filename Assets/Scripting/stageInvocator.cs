@@ -22,6 +22,14 @@ public class stageInvocator : MonoBehaviour
             case "Train":
                 SceneManager.LoadScene("Train");
                 break;
+
+            case "Factory":
+                SceneManager.LoadScene("Factory");
+                break;
+
+            case "Ship":
+                SceneManager.LoadScene("Ship");
+                break;
         }
     }
 }
