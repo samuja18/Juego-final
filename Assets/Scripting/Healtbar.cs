@@ -15,6 +15,7 @@ public class Healtbar : MonoBehaviour
     private float fixedDeltaTime;
     private float relantizacionDeTiempo = 0.1f;
     public ControlAtaques ControlAtaques;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {

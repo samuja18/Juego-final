@@ -58,9 +58,21 @@ public class NEWenemigo : MonoBehaviour
     public bool AtaqueCargado = false;
     public KeyCode CARGADO;
     private float fixedDeltaTime;
+    public AudioSource audioSource;
+    public AudioClip golpeSONIDO;
+    public AudioClip parrySONIDO;
+    public AudioClip cancionFONDO;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        audioSource.clip = cancionFONDO;
+        audioSource.Play();
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         danoGolpeLigero = 4;
         danoGolpePesado = 12;
         danoGolpeDelantePesado = 18;
@@ -166,6 +178,8 @@ public class NEWenemigo : MonoBehaviour
         Debug.Log("ill fuck your butt in smash bros" + golpeLigero.gameObject.name);
         if((golpeLigero.gameObject.CompareTag("parry") && (AtaqueCargado == false)))
         {
+        audioSource.clip = parrySONIDO;
+        audioSource.Play();
         ControlAtaques ControlAtaques = GetComponentInParent<ControlAtaques>();
         if (ControlAtaques != null)
         {
@@ -183,6 +197,8 @@ public class NEWenemigo : MonoBehaviour
         // ataque ligero
         if((golpeLigero.gameObject.CompareTag("golpe ligero")) && (controlparry == false))
         {
+        audioSource.clip = golpeSONIDO;
+        audioSource.Play();
         NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
         float danoFinal = (atacante != null) ? atacante.danoGolpeLigero : danoGolpeLigero;
 
@@ -220,6 +236,8 @@ public class NEWenemigo : MonoBehaviour
         // ataque pesado
         if((golpeLigero.gameObject.CompareTag("golpe pesado")) && (controlparry == false))
         {
+        audioSource.clip = golpeSONIDO;
+        audioSource.Play();
         NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
         float danoFinal = (atacante != null) ? atacante.danoGolpePesado : danoGolpePesado;
         if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
@@ -251,6 +269,8 @@ public class NEWenemigo : MonoBehaviour
         // ataque delante pesado
         if((golpeLigero.gameObject.CompareTag("golpe delante pesado")) && (controlparry == false))
         {
+        audioSource.clip = golpeSONIDO;
+        audioSource.Play();
         NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
         float danoFinal = (atacante != null) ? atacante.danoGolpeDelantePesado : danoGolpeDelantePesado;
         if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
@@ -282,6 +302,8 @@ public class NEWenemigo : MonoBehaviour
         // ataque delante ligero
         if((golpeLigero.gameObject.CompareTag("golpe delante ligero")) && (controlparry == false))
         {
+        audioSource.clip = golpeSONIDO;
+        audioSource.Play();
         NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
         float danoFinal = (atacante != null) ? atacante.danoGolpeDelanteLigero : danoGolpeDelanteLigero;
         if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
@@ -313,6 +335,8 @@ public class NEWenemigo : MonoBehaviour
         // ataque agachate pesado
         if((golpeLigero.gameObject.CompareTag("golpe agachate pesado")) && (controlparry == false))
         {
+        audioSource.clip = golpeSONIDO;
+        audioSource.Play();
         NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
         float danoFinal = (atacante != null) ? atacante.danoGolpeAgachatePesado : danoGolpeAgachatePesado;
         if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
@@ -344,6 +368,8 @@ public class NEWenemigo : MonoBehaviour
         // ataque salto ligero
         if((golpeLigero.gameObject.CompareTag("salto golpe ligero")) && (controlparry == false))
         {
+        audioSource.clip = golpeSONIDO;
+        audioSource.Play();
         NEWenemigo atacante = golpeLigero.GetComponentInParent<NEWenemigo>();
         float danoFinal = (atacante != null) ? atacante.daanoGolpeSaltoLigero : daanoGolpeSaltoLigero;
         if ((golpesRecibido == 0) && (Time.timeScale == 1.0f))
