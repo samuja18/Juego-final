@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3723291831583195901
+--- !u!1 &7475340846156299709
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2412290006519100194}
-  - component: {fileID: 602382736070023860}
+  - component: {fileID: 8694647037323071270}
+  - component: {fileID: 129366604691320684}
   m_Layer: 0
   m_Name: PlayerManager_1
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2412290006519100194
+--- !u!4 &8694647037323071270
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3723291831583195901}
+  m_GameObject: {fileID: 7475340846156299709}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.78004855, z: -0, w: 0.625719}
   m_LocalPosition: {x: -4.93, y: 0.33, z: 2.13}
@@ -32,19 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -102.53, z: 0}
---- !u!114 &602382736070023860
+--- !u!114 &129366604691320684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3723291831583195901}
+  m_GameObject: {fileID: 7475340846156299709}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21d1b01329aa12841bc42baf54208c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::characterInvoque
-  kiro: {fileID: 3741506071464360606, guid: 6bceb30425f9d2247817d9f7dbbf0e61, type: 3}
+  kiro: {fileID: 3009963087964720468, guid: 842c8310e4027ec468bd8d0019e1597d, type: 3}
   pointB: {fileID: 3741506071464360606, guid: 92d54207e789c4b4dbccdce388bdaeaf, type: 3}
-  kakareta: {fileID: 6313876524731211647, guid: c2ea3c49ca55f1f41afc18082140f07f, type: 3}
-  spawnPoint: {fileID: 2412290006519100194}
+  kakareta: {fileID: 3741506071464360606, guid: bccebba2332b9134fa35f2dbf7bfcd77, type: 3}
+  spawnPoint: {fileID: 8694647037323071270}
