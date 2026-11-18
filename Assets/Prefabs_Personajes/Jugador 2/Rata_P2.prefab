@@ -3153,7 +3153,7 @@ PrefabInstance:
       objectReference: {fileID: -3850736514843541464, guid: 85e86c8b8a2d3eb40ae0373cdcf4811e, type: 3}
     - target: {fileID: 919132149155446097, guid: f56d2ed1c8f37c2479fefde40918fe6f, type: 3}
       propertyPath: m_Name
-      value: Rata_P1
+      value: Rata_P2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f56d2ed1c8f37c2479fefde40918fe6f, type: 3}
       propertyPath: m_Layer
@@ -3161,7 +3161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f56d2ed1c8f37c2479fefde40918fe6f, type: 3}
       propertyPath: m_TagString
-      value: jugador1
+      value: jugador2
       objectReference: {fileID: 0}
     - target: {fileID: 2234995421923447144, guid: f56d2ed1c8f37c2479fefde40918fe6f, type: 3}
       propertyPath: m_RootBone
