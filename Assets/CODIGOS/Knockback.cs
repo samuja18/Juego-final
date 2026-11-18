@@ -562,6 +562,7 @@ public class NEWenemigo : MonoBehaviour
     
     public void FINAL()
         {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("menu");
         Debug.Log("termino");
         vida.gameObject.SetActive(false);
         escudo.gameObject.SetActive(false);
