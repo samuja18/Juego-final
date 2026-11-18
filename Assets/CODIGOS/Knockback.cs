@@ -6,14 +6,14 @@ public class NEWenemigo : MonoBehaviour
     public float direccionKnockBack = -1f;
     private float direccionKnockBackVertical = 10f;
     private Rigidbody rb;
-    public float DELAYknockback = 2f;
-    public float knockBackPARRY = 6f;
-    public float KIROknockBackGolpeLigero = 3f;
-    public float KIROknockBackGolpePesado = 5f;
-    public float KIROknockBackGolpeDelantePesado = 5f;
-    public float KIROknockBackGolpeDelanteLigero = 5f;
-    public float KIROknockBackGolpeAgachatePesado = 6f;
-    public float KIROknockBackGolpeSaltoLigero = 3f;
+    public float DELAYknockback = 0.2f;
+    public float knockBackPARRY = 0.3f;
+    public float KIROknockBackGolpeLigero = 0.1f;
+    public float KIROknockBackGolpePesado = 0.2f;
+    public float KIROknockBackGolpeDelantePesado = 0.2f;
+    public float KIROknockBackGolpeDelanteLigero = 0.2f;
+    public float KIROknockBackGolpeAgachatePesado = 0.3f;
+    public float KIROknockBackGolpeSaltoLigero = 0.1f;
 
 
 
@@ -22,12 +22,12 @@ public class NEWenemigo : MonoBehaviour
      [SerializeField] private UnityEvent DejaDeParry; 
 
     public float RECUPERACIONPARRY = 0.7f;
-    public float RECUPERACIONGolpeLigero = 0.1f;
-    public float RECUPERACIONGolpePesado = 0.5f;
-    public float RECUPERACIONGolpeDelantePesado = 0.7f;
-    public float RECUPERACIONGolpeDelanteLigero = 0.3f;
-    public float RECUPERACIONGolpeAgachatePesado= 0.6f;
-    public float RECUPERACIONGolpeSaltoLigero = 0.3f;
+    public float RECUPERACIONGolpeLigero = 0.05f;
+    public float RECUPERACIONGolpePesado = 0.25f;
+    public float RECUPERACIONGolpeDelantePesado = 0.35f;
+    public float RECUPERACIONGolpeDelanteLigero = 0.15f;
+    public float RECUPERACIONGolpeAgachatePesado= 0.3f;
+    public float RECUPERACIONGolpeSaltoLigero = 0.15f;
 
     public float RECUPERACIONESCUDOROTO = 3f;
     public bool aturdido;
@@ -35,12 +35,12 @@ public class NEWenemigo : MonoBehaviour
 
 
     public int danoParry = 34;
-    public int danoGolpeLigero = 4;
-    public int danoGolpePesado = 12;
-    public int danoGolpeDelantePesado = 18;
-    public int danoGolpeDelanteLigero = 8;
-    public int danoGolpeAgachatePesado= 16;
-    public int daanoGolpeSaltoLigero = 8;
+    public int danoGolpeLigero = 8;
+    public int danoGolpePesado = 16;
+    public int danoGolpeDelantePesado = 20;
+    public int danoGolpeDelanteLigero = 12;
+    public int danoGolpeAgachatePesado= 20;
+    public int daanoGolpeSaltoLigero = 12;
 
 
     public Healtbar vida; 
@@ -212,7 +212,7 @@ public class NEWenemigo : MonoBehaviour
         Debug.Log("Atacante encontrado: " + (atacante != null ? atacante.gameObject.name : "NINGUNO (NULL)"));
         Debug.Log("Daño del atacante: " + (atacante != null ? atacante.danoGolpeLigero.ToString() : "N/A"));
         Debug.Log("Daño local (defensor): " + danoGolpeLigero);
-        vida.takeDamage(danoFinal / 4);
+        vida.takeDamage(danoFinal / 2);
         if (escudo.escudoRoto == false)
         {
         escudo.takeDamage(danoFinal);
@@ -226,9 +226,9 @@ public class NEWenemigo : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,0f, 0f).normalized; 
-        rb.AddForce(impulso * KIROknockBackGolpeLigero, ForceMode.Impulse);
+        rb.AddForce(impulso * KIROknockBackGolpeLigero / 3, ForceMode.VelocityChange);
         RETROCESO.SetBool("ATURDIDO", true);
-        StartCoroutine(RECUPERACIONKNOCKBACKGolpeLigero(RECUPERACIONGolpeLigero));
+        StartCoroutine(RECUPERACIONKNOCKBACKGolpeLigero(RECUPERACIONGolpeLigero / 2));
         golpesRecibido += 1;
         }
         // ataque ligero
@@ -245,7 +245,7 @@ public class NEWenemigo : MonoBehaviour
             danoFinal = danoFinal * 5;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(danoFinal / 4);
+        vida.takeDamage(danoFinal / 2);
         if (escudo.escudoRoto == false)
         {
         escudo.takeDamage(danoFinal);
@@ -259,9 +259,9 @@ public class NEWenemigo : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,0f, 0f).normalized; 
-        rb.AddForce(impulso * KIROknockBackGolpePesado, ForceMode.Impulse);
+        rb.AddForce(impulso * KIROknockBackGolpePesado / 3, ForceMode.VelocityChange);
         RETROCESO.SetBool("ATURDIDO", true);
-        StartCoroutine(RECUPERACIONKNOCKBACKGolpePesado(RECUPERACIONGolpePesado));
+        StartCoroutine(RECUPERACIONKNOCKBACKGolpePesado(RECUPERACIONGolpePesado / 2));
         golpesRecibido += 1;
         }
         // ataque pesado
@@ -278,7 +278,7 @@ public class NEWenemigo : MonoBehaviour
             danoFinal = danoFinal * 3;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(danoFinal / 4);
+        vida.takeDamage(danoFinal / 2);
         if (escudo.escudoRoto == false)
         {
         escudo.takeDamage(danoFinal);
@@ -292,9 +292,9 @@ public class NEWenemigo : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,0f, 0f).normalized; 
-        rb.AddForce(impulso * KIROknockBackGolpeDelantePesado, ForceMode.Impulse);
+        rb.AddForce(impulso * KIROknockBackGolpeDelantePesado / 3, ForceMode.VelocityChange);
         RETROCESO.SetBool("ATURDIDO", true);
-        StartCoroutine(RECUPERACIONKNOCKBACKGolpeDelantePesado(RECUPERACIONGolpeDelantePesado));
+        StartCoroutine(RECUPERACIONKNOCKBACKGolpeDelantePesado(RECUPERACIONGolpeDelantePesado / 2));
         golpesRecibido += 1;
         }
         // ataque delante pesado
@@ -311,7 +311,7 @@ public class NEWenemigo : MonoBehaviour
             danoFinal = danoFinal * 3;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(danoFinal / 4);
+        vida.takeDamage(danoFinal / 2);
         if (escudo.escudoRoto == false)
         {
         escudo.takeDamage(danoFinal);
@@ -325,9 +325,9 @@ public class NEWenemigo : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,direccionKnockBackVertical, 0f).normalized; 
-        rb.AddForce(impulso * KIROknockBackGolpeDelanteLigero, ForceMode.Impulse);
+        rb.AddForce(impulso * KIROknockBackGolpeDelanteLigero / 3, ForceMode.VelocityChange);
         RETROCESO.SetBool("ATURDIDO", true);
-        StartCoroutine(RECUPERACIONKNOCKBACKGolpeDelanteLigero(RECUPERACIONGolpeDelanteLigero));
+        StartCoroutine(RECUPERACIONKNOCKBACKGolpeDelanteLigero(RECUPERACIONGolpeDelanteLigero / 2));
         golpesRecibido += 1;
         }
         // ataque delante ligero
@@ -344,7 +344,7 @@ public class NEWenemigo : MonoBehaviour
             danoFinal = danoFinal * 3;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(danoFinal / 4);
+        vida.takeDamage(danoFinal / 2);
         if (escudo.escudoRoto == false)
         {
         escudo.takeDamage(danoFinal);
@@ -358,9 +358,9 @@ public class NEWenemigo : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,0f, 0f).normalized; 
-        rb.AddForce(impulso * KIROknockBackGolpeAgachatePesado, ForceMode.Impulse);
+        rb.AddForce(impulso * KIROknockBackGolpeAgachatePesado / 3, ForceMode.VelocityChange);
         RETROCESO.SetBool("ATURDIDO", true);
-        StartCoroutine(RECUPERACIONKNOCKBACKGolpeAgachatePesado(RECUPERACIONGolpeAgachatePesado));
+        StartCoroutine(RECUPERACIONKNOCKBACKGolpeAgachatePesado(RECUPERACIONGolpeAgachatePesado / 2));
         golpesRecibido += 1;
         }
         // ataque agachate pesado
@@ -377,7 +377,7 @@ public class NEWenemigo : MonoBehaviour
             danoFinal = danoFinal * 3;
             Time.timeScale = relantizacionDeTiempo;
         }
-        vida.takeDamage(danoFinal / 4);
+        vida.takeDamage(danoFinal / 2);
         if (escudo.escudoRoto == false)
         {
         escudo.takeDamage(danoFinal);
@@ -391,9 +391,9 @@ public class NEWenemigo : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         aturdido = true;
         Vector3 impulso = new Vector3(direccionKnockBack,0f, 0f).normalized; 
-        rb.AddForce(impulso * KIROknockBackGolpeSaltoLigero, ForceMode.Impulse);
+        rb.AddForce(impulso * KIROknockBackGolpeSaltoLigero / 3, ForceMode.VelocityChange);
         RETROCESO.SetBool("ATURDIDO", true);
-        StartCoroutine(RECUPERACIONKNOCKBACKGolpeSaltoLigero(RECUPERACIONGolpeSaltoLigero));
+        StartCoroutine(RECUPERACIONKNOCKBACKGolpeSaltoLigero(RECUPERACIONGolpeSaltoLigero / 2));
         aturdido = true;
         golpesRecibido += 1;
         }
@@ -425,7 +425,7 @@ public class NEWenemigo : MonoBehaviour
         Vector3 impulso = new Vector3(direccionKnockBack,direccionKnockBackVertical, 0f).normalized; 
         rb.AddForce(impulso * KIROknockBackGolpeDelanteLigero, ForceMode.Impulse);
         RETROCESO.SetBool("ATURDIDO", true);
-        StartCoroutine(RECUPERACIONKNOCKBACKGolpeDelanteLigero(RECUPERACIONGolpeDelanteLigero));
+        StartCoroutine(RECUPERACIONKNOCKBACKGolpeDelanteLigero(RECUPERACIONGolpeDelanteLigero ));
     }
 
     private IEnumerator DELAYknockBackGolpePesado(float delay)
@@ -560,6 +560,12 @@ public class NEWenemigo : MonoBehaviour
         parry.currentCharges = 3;
     }
     
+    public void FINAL()
+        {
+        Debug.Log("termino");
+        vida.gameObject.SetActive(false);
+        escudo.gameObject.SetActive(false);
+        }
     
     
 }

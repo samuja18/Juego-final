@@ -34,8 +34,9 @@ public class Healtbar : MonoBehaviour
         {
             easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, health, lerpspeed);
         }
-        if ((health == 0) && !yaempezo)
+        if ((health < 1) && !yaempezo)
         {
+            
             yaempezo = true;
             if((Jugador.name == "jugador1")&& (Time.timeScale == 1.0f))
             {
@@ -45,6 +46,7 @@ public class Healtbar : MonoBehaviour
                 DERROTAAA.SetTrigger("DERROTAAA");
                 Time.timeScale = relantizacionDeTiempo;
                 ControlAtaques.AtaqueAturdido();
+                
             }
             if((Jugador.name == "jugador2")&& (Time.timeScale == 1.0f))
             {
