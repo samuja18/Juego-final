@@ -9,7 +9,7 @@ public class characterInvoque : MonoBehaviour
     public Transform spawnPoint;
     void Start()
     {
-        
+
         string character = PlayerPrefs.GetString(key:"SelectedCharacter");
         SpawnCharacter(character);
     }

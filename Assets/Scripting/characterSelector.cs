@@ -72,6 +72,7 @@ public class characterSelector : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
             botones[seleccionado].onClick.Invoke();
+            SceneManager.LoadScene("CharacterSelectionCoopP2");
 
         }
 
