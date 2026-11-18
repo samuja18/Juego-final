@@ -38,7 +38,7 @@ public class Healtbar : MonoBehaviour
         {
             
             yaempezo = true;
-            if((Jugador.name == "jugador1")&& (Time.timeScale == 1.0f))
+            if((Jugador.tag == "jugador1")&& (Time.timeScale == 1.0f))
             {
                 
                 Knockback.ganaste2.SetActive(true);
